@@ -7,12 +7,20 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: 'register-entity',
+    loadChildren: () => import('./pages/register-entity/register-entity.module').then( m => m.RegisterEntityPageModule)
+  },
+  {
+    path: 'register-employee',
+    loadChildren: () => import('./pages/register-employee/register-employee.module').then( m => m.RegisterEmployeePageModule)
+  },
+  {
     path: '',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '**', redirectTo: '', pathMatch: 'full'
-  },
+  }
 ];
 @NgModule({
   imports: [

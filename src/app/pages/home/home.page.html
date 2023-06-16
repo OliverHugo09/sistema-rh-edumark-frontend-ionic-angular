@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [fullscreen]="true">
   <div class="container-fluid">
     <div class="container">
       <div class="row align-items-center justify-content-center gx-5" style="height: 100vh;">
@@ -41,9 +41,9 @@
   
             <!-- Submit button -->
             <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="button">Iniciar sesión</button>
-              <button class="btn btn-primary" type="button">Registrate</button>
-              <button class="btn btn-secondary btn-block" type="button"><i class="fab bi bi-box-arrow-up-right me-2"></i>Sistema RH</button>
+              <button class="btn btn-primary" type="button" [routerLink]="['empleado','panel','inicio']">Iniciar sesión</button>
+              <button class="btn btn-primary" type="button" [routerLink]="['register-employee']">Registrate</button>
+              <button class="btn btn-secondary btn-block" type="button" [routerLink]="['empleado','panel','inicio']"><i class="fab bi bi-box-arrow-up-right me-2"></i>Sistema RH</button>
             </div>
   
           </form>
