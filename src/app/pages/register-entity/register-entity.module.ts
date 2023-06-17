@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { RegisterEntityPageRoutingModule } from './register-entity-routing.module';
 
+import { ComponentsModule } from 'src/app/components/components.module';
+
 import { RegisterEntityPage } from './register-entity.page';
 
 @NgModule({
@@ -13,8 +15,12 @@ import { RegisterEntityPage } from './register-entity.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RegisterEntityPageRoutingModule
+    RegisterEntityPageRoutingModule,
+    ComponentsModule,
+    FormsModule,
   ],
-  declarations: [RegisterEntityPage]
+  declarations: [RegisterEntityPage],
+    exports: [
+    ]
 })
 export class RegisterEntityPageModule {}
