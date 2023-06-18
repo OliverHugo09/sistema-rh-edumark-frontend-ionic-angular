@@ -6,13 +6,13 @@ import { RegisterCompanyComponent } from '../../components/register-entity/regis
 import { RegisterOrganizationComponent } from '../../components/register-entity/register-organization/register-organization.component';
 
 const routes: Routes = [
-  { path: '', component: RegisterEntityPage},
+  { path: '', component: RegisterEntityPage },
   { path: 'registrar-empresa', component: RegisterCompanyComponent },
-  { path: 'registrar-sindicato', component: RegisterOrganizationComponent },
+  { path: 'registrar-entidad', component: RegisterOrganizationComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RegisterEntityPageRoutingModule {}
+export class RegisterEntityPageRoutingModule { }

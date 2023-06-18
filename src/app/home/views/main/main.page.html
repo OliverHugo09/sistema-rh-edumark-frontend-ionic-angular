@@ -18,14 +18,7 @@
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <div class="  input-group">
-                <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control form-control-lg"
-                  [(ngModel)]="password" name="password">
-                <button class="btn btn-outline-secondary" type="button" *ngIf="password.length > 0"
-                  (click)="togglePasswordVisibility()">
-                  <i class="bi bi-eye{{ showPassword ? '-slash' : '' }}"></i>
-                </button>
-              </div>
+              <input type="password" class="form-control form-control-lg" name="password">
               <label class="form-label" for="form1Example13">Contraseña</label>
             </div>
 

@@ -9,11 +9,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { ComponentsModule } from './components/components.module';
+import { AdminComponentsModule } from './admin/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, CommonModule, ComponentsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, CommonModule, AdminComponentsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
   exports: [
@@ -22,4 +22,4 @@ import { ComponentsModule } from './components/components.module';
     ReactiveFormsModule,
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -17,11 +17,12 @@ import { RegisterOrganizationComponent } from './register-entity/register-organi
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    IonicModule
   ],
   exports: [
     RegisterCompanyComponent,
     RegisterOrganizationComponent
   ]
 })
-export class ComponentsModule { }
+export class AdminComponentsModule { }

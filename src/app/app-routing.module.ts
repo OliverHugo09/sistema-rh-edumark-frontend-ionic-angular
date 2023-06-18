@@ -8,19 +8,23 @@ const routes: Routes = [
   },
   {
     path: 'registrar-entidad',
-    loadChildren: () => import('./pages/register-entity/register-entity.module').then( m => m.RegisterEntityPageModule)
+    loadChildren: () => import('./admin/views/register-entity/register-entity.module').then(m => m.RegisterEntityPageModule)
   },
   {
     path: 'registrar-empleado',
-    loadChildren: () => import('./pages/register-employee/register-employee.module').then( m => m.RegisterEmployeePageModule)
+    loadChildren: () => import('./home/views/register-employee/register-employee.module').then(m => m.RegisterEmployeePageModule)
   },
   {
     path: '',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/views/main/main.module').then(m => m.MainPageModule)
+  },
+  {
+    path: 'admin-panel',
+    loadChildren: () => import('./admin/views/admin-panel/admin-panel.module').then(m => m.AdminPanelPageModule)
   },
   {
     path: '**', redirectTo: '', pathMatch: 'full'
-  }
+  },
 ];
 @NgModule({
   imports: [
@@ -28,4 +32,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

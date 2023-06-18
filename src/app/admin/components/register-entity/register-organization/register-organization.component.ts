@@ -5,10 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './register-organization.component.html',
   styleUrls: ['./register-organization.component.scss'],
 })
-export class RegisterOrganizationComponent  implements OnInit {
+export class RegisterOrganizationComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
 
 }
