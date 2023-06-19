@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RegisterEntityPage } from './register-entity.page';
-import { RegisterCompanyComponent } from '../../components/register-entity/register-company/register-company.component';
-import { RegisterOrganizationComponent } from '../../components/register-entity/register-organization/register-organization.component';
+import { RegisterCompanyComponent } from '../../../admin/components/register-entity/register-company/register-company.component';
+import { RegisterOrganizationComponent } from '../../../admin/components/register-entity/register-organization/register-organization.component';
 
 const routes: Routes = [
   { path: '', component: RegisterEntityPage },

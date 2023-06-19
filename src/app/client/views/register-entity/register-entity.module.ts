@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { RegisterEntityPageRoutingModule } from './register-entity-routing.module';
 
-import { AdminComponentsModule } from './../../components/components.module';
+import { AdminComponentsModule } from '../../../admin/components/components.module';
 
 import { RegisterEntityPage } from './register-entity.page';
 
