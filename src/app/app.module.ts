@@ -10,10 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AdminComponentsModule } from './admin/components/components.module';
+import { ClientComponentsModule } from './client/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, CommonModule, AdminComponentsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, CommonModule, AdminComponentsModule, ClientComponentsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
   exports: [

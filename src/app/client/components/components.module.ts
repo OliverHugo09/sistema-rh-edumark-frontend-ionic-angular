@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { LoginEmployeeComponent } from './login/login-employee/login-employee.component';
 
 @NgModule({
   declarations: [
-
+    LoginEmployeeComponent
   ],
   imports: [
     CommonModule,
@@ -17,6 +18,7 @@ import { IonicModule } from '@ionic/angular';
     IonicModule
   ],
   exports: [
+    LoginEmployeeComponent
   ]
 })
-export class AdminComponentsModule { }
+export class ClientComponentsModule { }

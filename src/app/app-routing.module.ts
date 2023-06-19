@@ -7,32 +7,16 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'registrar-entidad',
-    loadChildren: () => import('./client/views/register-entity/register-entity.module').then(m => m.RegisterEntityPageModule)
-  },
-  {
-    path: 'registrar-empleado',
-    loadChildren: () => import('./client/views/register-employee/register-employee.module').then(m => m.RegisterEmployeePageModule)
-  },
-  {
     path: '',
-    loadChildren: () => import('./client/views/login-employee/login-employee.module').then(m => m.LoginEmployeePageModule)
+    loadChildren: () => import('./client/routes/routes.module').then(m => m.RoutesPageModule)
   },
   {
     path: 'admin-panel',
-    loadChildren: () => import('./admin/views/admin-panel/admin-panel.module').then(m => m.AdminPanelPageModule)
+    loadChildren: () => import('./admin/routes/admin-panel/admin-panel.module').then(m => m.AdminPanelPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./client/views/login-entity/login-entity.module').then(m => m.LoginEntityPageModule)
-  },
-  {
-    path: 'login-employee',
-    loadChildren: () => import('./client/views/login-employee/login-employee.module').then(m => m.LoginEmployeePageModule)
-  },
-  {
-    path: 'login-entity',
-    loadChildren: () => import('./client/views/login-entity/login-entity.module').then(m => m.LoginEntityPageModule)
+    path: 'routes',
+    loadChildren: () => import('./client/routes/routes.module').then(m => m.RoutesPageModule)
   },
   {
     path: '**', redirectTo: '', pathMatch: 'full'
