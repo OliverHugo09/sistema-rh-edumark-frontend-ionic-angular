@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -21,6 +22,7 @@ import { ClientComponentsModule } from './client/components/components.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ]
 })
 export class AppModule { }

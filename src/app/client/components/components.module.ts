@@ -5,11 +5,22 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { RegisterEmployeeComponent } from './register/register-employee/register-employee.component';
+import { RegisterEntityComponent } from './register/register-entity/register-entity.component';
+import { RegisterOrganizationComponent } from './register/register-organization/register-organization.component';
+import { RegisterCompanyComponent } from './register/register-company/register-company.component';
+
 import { LoginEmployeeComponent } from './login/login-employee/login-employee.component';
+import { LoginEntityComponent } from './login/login-entity/login-entity.component';
 
 @NgModule({
   declarations: [
-    LoginEmployeeComponent
+    RegisterEmployeeComponent,
+    RegisterEntityComponent,
+    RegisterOrganizationComponent,
+    RegisterCompanyComponent,
+    LoginEmployeeComponent,
+    LoginEntityComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +29,12 @@ import { LoginEmployeeComponent } from './login/login-employee/login-employee.co
     IonicModule
   ],
   exports: [
-    LoginEmployeeComponent
+    RegisterEmployeeComponent,
+    RegisterEntityComponent,
+    RegisterOrganizationComponent,
+    RegisterCompanyComponent,
+    LoginEmployeeComponent,
+    LoginEntityComponent
   ]
 })
 export class ClientComponentsModule { }
