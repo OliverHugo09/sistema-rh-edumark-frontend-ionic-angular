@@ -7,10 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { IonicModule } from '@ionic/angular';
 
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { DarkmodeComponent } from './darkmode/darkmode.component';
-import { MainComponent } from './main/main.component';
+import { NavbarComponent } from './admin-panel/navbar/navbar.component';
+import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
+import { DarkmodeComponent } from './admin-panel/darkmode/darkmode.component';
+import { MainComponent } from './admin-panel/main/main.component';
 
 @NgModule({
   declarations: [

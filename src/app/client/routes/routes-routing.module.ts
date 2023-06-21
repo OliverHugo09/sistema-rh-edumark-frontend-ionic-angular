@@ -16,8 +16,8 @@ const routes: Routes = [
   },
   { path: 'registrar-empleado', component: RegisterEmployeeComponent },
   { path: 'registrar-entidad', component: RegisterEntityComponent },
-  { path: 'registrar-entidad/registrar-organizacion', component: RegisterOrganizationComponent },
-  { path: 'registrar-entidad/registrar-empresa', component: RegisterCompanyComponent },
+  { path: 'registrar-organizacion', component: RegisterOrganizationComponent },
+  { path: 'registrar-empresa', component: RegisterCompanyComponent },
   { path: 'login', component: LoginEntityComponent },
 ];
 

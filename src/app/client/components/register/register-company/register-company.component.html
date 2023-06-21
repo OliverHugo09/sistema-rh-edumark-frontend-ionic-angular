@@ -7,62 +7,63 @@
         <div class="col-sm-12 col-md-12 p-3 shadow-lg rounded">
           <h1 class="mb-2">Registra una nueva empresa</h1>
           <form>
-            <!-- Organization box-->
-            <div class="mb-1">
-              <label class="form-label" for="form1Example13">Sindicato</label>
-              <select class="form-select" id="inputGroupSelect01">
-                <option selected>Selecciona el sindicato al que pertenece la empresa</option>
-                <option value="">Ninguna</option>
-                <option value="2">Sindicato1</option>
-                <option value="3">Sindicato2</option>
-              </select>
-            </div>
-            <!-- Name company -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Nombre de la empresa</label>
-              <input type="text" id="form1Example13" class="form-control form-control-md" />
+            <!-- Organization box -->
+            <ion-item lines="full" class="mb-2">
+              <ion-select aria-label="entidades" interface="action-sheet"
+                placeholder="Selecciona el sindicato al que pertenece la empresa">
+                <ion-select-option value="1">CROC</ion-select-option>
+                <ion-select-option value="2">Sindicato de medios de comunicación</ion-select-option>
+                <ion-select-option value="3">Asociación de agricultores de México</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <!-- Name entity -->
+            <div class="form-outline mb-2">
+              <ion-input type="text" label="Nombre de la empresa" label-placement="floating" fill="outline"
+                placeholder="Ingresa el nombre de la empresa"></ion-input>
             </div>
             <!-- Location company -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Ubicación</label>
-              <input type="text"
-                placeholder="Estado, Ciudad, País / Ejem. Querétaro, Qro, México / Quintana Roo, Cancún, México"
-                id="form1Example13" class="form-control form-control-md" />
+            <div class="form-outline mb-2">
+              <ion-input type="text" label="Ubicación" label-placement="floating" fill="outline"
+                placeholder="Estado, Ciudad, País / Ejem. Querétaro, Qro, México / Quintana Roo, Cancún, México"></ion-input>
             </div>
             <!-- Giro -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Giro</label>
-              <input type="text" id="form1Example13" class="form-control form-control-md" />
-            </div>
+            <ion-item lines="full" class="mb-2">
+              <ion-select aria-label="entidades" interface="action-sheet"
+                placeholder="Selecciona el Giro de tu empresa">
+                <ion-select-option value="1">Educativo</ion-select-option>
+                <ion-select-option value="2">Ventas</ion-select-option>
+                <ion-select-option value="3">Mineria</ion-select-option>
+              </ion-select>
+            </ion-item>
             <!-- RFC -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">RFC de la empresa</label>
-              <input type="text" id="form1Example13" class="form-control form-control-md" />
+            <div class="form-outline mb-2">
+              <ion-input type="text" label="RFC de la entidad" label-placement="floating" fill="outline"
+                placeholder="Ingresa el RFC de la organización"></ion-input>
             </div>
             <!-- Company representative -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Nombre completo del representante</label>
-              <input type="text" id="form1Example13" class="form-control form-control-md" />
+            <div class="form-outline mb-2">
+              <ion-input type="text" label="Nombre completo del representante" label-placement="floating" fill="outline"
+                placeholder="Nombres Apellido Paterno Apellido Materno / Ejemplo. Juan Manuel Lorenzo Peralta"></ion-input>
             </div>
             <!-- Phone number -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Numero telefónico de contacto</label>
-              <input type="number" id="form1Example13" class="form-control form-control-md" />
+            <div class="form-outline mb-2">
+              <ion-input type="tel" label="Numero telefónico de contacto" label-placement="floating" fill="outline"
+                placeholder="Ejemplo. 888-888-8888"></ion-input>
             </div>
             <!-- Email input -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Correo electronico de contacto</label>
-              <input type="email" id="form1Example13" class="form-control form-control-md" />
+            <div class="form-outline mb-2">
+              <ion-input type="email" label="Correo electronico de contacto" label-placement="floating" fill="outline"
+                placeholder="Ejemplo. email@domain.com"></ion-input>
             </div>
             <!-- Password input -->
-            <div class="form-outline mb-1">
-              <label class="form-label" for="form1Example13">Contraseña</label>
-              <input type="password" class="form-control form-control-md" name="password">
+            <div class="form-outline mb-2">
+              <ion-input type="password" label="Contraseña" label-placement="floating" fill="outline"
+                placeholder="Ejemplo. r5LjN8Yvg$MNtFui"></ion-input>
             </div>
             <!-- Password confirm -->
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form1Example13">Confirmar contraseña</label>
-              <input type="password" class="form-control form-control-md" name="password">
+            <div class="form-outline mb-2">
+              <ion-input type="password" label="Confirmar contraseña" label-placement="floating" fill="outline"
+                placeholder=""></ion-input>
             </div>
             <!-- Submit button -->
             <div class="d-grid gap-2">

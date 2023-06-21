@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RoutesPage } from './routes.page';
 
-import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { SidebarComponent } from '../components/admin-panel/sidebar/sidebar.component';
 
 const routes: Routes = [
   {
