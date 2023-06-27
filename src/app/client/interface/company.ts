@@ -1,4 +1,4 @@
-export interface Organization {
+export interface Company {
     id: number | null;
     nombre: string;
     ubicacion: string;
@@ -7,7 +7,6 @@ export interface Organization {
     correo: string;
     rfc: string;
     password: string;
-    giroId: number
-    tipoentidadId: number
-
+    giroId: number;
+    entidadId: number | null;
 }

@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -20,10 +18,11 @@ import { CrudGiroService } from '../../../connection/api/crud-giro.service';
   templateUrl: './register-organization.component.html',
   styleUrls: ['./register-organization.component.scss'],
 })
-export class RegisterOrganizationComponent implements OnInit {
+export class RegisterOrganizationComponent implements OnInit, OnDestroy {
   organizationForm: FormGroup;
 
   organization: Organization = {
+    id: null,
     nombre: '',
     ubicacion: '',
     representante: '',
@@ -44,8 +43,6 @@ export class RegisterOrganizationComponent implements OnInit {
     id: 0,
     tipo: '',
   };
-
-  returnUrl = '/login';
 
   private subscriptions: Array<Subscription> = [];
   types: Organizationtype[];
@@ -140,6 +137,11 @@ export class RegisterOrganizationComponent implements OnInit {
         });
       }
     );
+  }
+
+  ngOnDestroy(): void {
+    // Desuscribirse de todas las suscripciones cuando el componente se destruye
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }
