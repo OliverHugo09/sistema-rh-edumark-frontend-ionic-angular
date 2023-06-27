@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -26,15 +26,14 @@ import { LoginEntityComponent } from './login/login-entity/login-entity.componen
     CommonModule,
     RouterModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    ReactiveFormsModule,
+
+
   ],
   exports: [
-    RegisterEmployeeComponent,
-    RegisterEntityComponent,
-    RegisterOrganizationComponent,
-    RegisterCompanyComponent,
     LoginEmployeeComponent,
-    LoginEntityComponent
+
   ]
 })
 export class ClientComponentsModule { }
