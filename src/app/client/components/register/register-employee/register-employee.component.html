@@ -4,80 +4,107 @@
       <!-- Login form -->
       <div class="col-sm-12 col-md-12 p-3 shadow-lg rounded">
         <h1 class="mb-2">Registrate como empleado</h1>
-        <form>
-          <!-- Entidad box -->
-          <ion-item lines="full" class="mb-1">
-            <ion-select aria-label="entidades" placeholder="Entidad a la que perteneces">
-              <ion-select-option value="">Ninguno</ion-select-option>
-              <ion-select-option value="1">Sindicato1</ion-select-option>
-              <ion-select-option value="2">Sindicato2</ion-select-option>
+        <form [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
+          <!-- Entity box -->
+          <ion-item lines="full" class="mb-2">
+            <ion-select [compareWith]="compareFn" aria-label="entidades" interface="action-sheet"
+              formControlName="entidadId" label="Selecciona tu organización">
+              <ion-select-option [value]="null">Ninguno</ion-select-option>
+              <ion-select-option *ngFor="let organization of organizations" [value]="organization.id">{{
+                organization.nombre }}</ion-select-option>
             </ion-select>
           </ion-item>
           <!-- Empresa box -->
-          <ion-item lines="full" class="mb-1">
-            <ion-select aria-label="empresa" placeholder="Empresa a la que perteneces">
-              <ion-select-option value="1">Empresa0</ion-select-option>
-              <ion-select-option value="2">Empresa1</ion-select-option>
-              <ion-select-option value="3">Empresa2</ion-select-option>
+          <ion-item lines="full" class="mb-2">
+            <ion-select aria-label="empresas" interface="action-sheet"
+              placeholder="Selecciona la empresa a la que perteneces" formControlName="empresaId">
+              <ion-select-option *ngFor="let company of companys" [value]="company.id">{{ company.nombre
+                }}</ion-select-option>
             </ion-select>
           </ion-item>
+          <div *ngIf="employeeForm.get('empresaId').invalid && employeeForm.get('empresaId').touched">
+            <p class="text-danger small"><small>La empresa es requerida</small></p>
+          </div>
           <!-- Full name -->
           <div class="form-outline mb-2">
             <ion-input type="text" label="Nombre completo" label-placement="floating" fill="outline"
-              placeholder="Ingresa tu nombre completo"></ion-input>
+              formControlName="nombre" placeholder="Ingresa tu nombre completo"></ion-input>
+            <div *ngIf="employeeForm.get('nombre').invalid && employeeForm.get('nombre').touched">
+              <p class="text-danger small"><small>Tu nombre completo es requerido</small></p>
+            </div>
           </div>
-          <!-- Number Employee -->
+          <!-- Phone number -->
           <div class="form-outline mb-2">
-            <ion-input type="number" label="Numero de colaborador" label-placement="floating" fill="outline"
-              placeholder="Ingresa tu numero de colaborador"></ion-input>
+            <ion-input type="tel" label="Numero de colaborador" label-placement="floating" fill="outline"
+              formControlName="noColaborador"
+              placeholder="Ingresa tu numero de colaborador / Ejemplo. STAFF-100"></ion-input>
+            <div *ngIf="employeeForm.get('noColaborador').invalid && employeeForm.get('noColaborador').touched">
+              <p class="text-danger small"><small>El número de colaborador es requerido</small></p>
+            </div>
           </div>
-          <!-- Number Phone -->
-          <div class="form-outline mb-1">
-            <ion-input type="number" label="Numero telefónico" label-placement="floating" fill="outline"
-              placeholder="Ingresa tu numero telefónico"></ion-input>
+          <!-- Phone number -->
+          <div class="form-outline mb-2">
+            <ion-input type="tel" label="Numero telefónico de contacto" label-placement="floating" fill="outline"
+              formControlName="telefono" placeholder="Ejemplo. 888-888-8888"></ion-input>
+            <div *ngIf="employeeForm.get('telefono').invalid && employeeForm.get('telefono').touched">
+              <p class="text-danger small"><small>El número de teléfono es requerido y debe tener minimo 10
+                  dígitos</small></p>
+            </div>
           </div>
           <!-- Deparment box -->
           <ion-item lines="full" class="mb-1">
-            <ion-select aria-label="departamento" placeholder="Departamento al que perteneces">
-              <ion-select-option value="tic">TIC</ion-select-option>
-              <ion-select-option value="rh">Recursos humanos</ion-select-option>
-              <ion-select-option value="vt">Ventas</ion-select-option>
+            <ion-select aria-label="departamento" placeholder="Departamento al que perteneces"
+              formControlName="departamento">
+              <ion-select-option value="TIC">TIC</ion-select-option>
+              <ion-select-option value="Recursos Humanos">Recursos humanos</ion-select-option>
+              <ion-select-option value="Ventas">Ventas</ion-select-option>
             </ion-select>
           </ion-item>
+          <div *ngIf="employeeForm.get('departamento').invalid && employeeForm.get('departamento').touched">
+            <p class="text-danger small"><small>El departamento es necesario</small></p>
+          </div>
           <!-- Job box -->
           <ion-item lines="full" class="mb-1">
-            <ion-select aria-label="puesto" placeholder="Puesto de trabajo">
-              <ion-select-option value="gerente">Gerente</ion-select-option>
-              <ion-select-option value="practicante">Practicante</ion-select-option>
-              <ion-select-option value="colaborador">Colaborador</ion-select-option>
+            <ion-select aria-label="puesto" placeholder="Puesto de trabajo" formControlName="puesto">
+              <ion-select-option value="Gerente">Gerente</ion-select-option>
+              <ion-select-option value="Practicante">Practicante</ion-select-option>
+              <ion-select-option value="Colaborador">Colaborador</ion-select-option>
             </ion-select>
           </ion-item>
-          <!-- Job time box -->
+          <div *ngIf="employeeForm.get('puesto').invalid && employeeForm.get('puesto').touched">
+            <p class="text-danger small"><small>El departamento es necesario</small></p>
+          </div>
+          <!-- Work shift -->
           <ion-item lines="full" class="mb-2">
-            <ion-select aria-label="turno" placeholder="Turno laboral">
-              <ion-select-option value="matutino">Matutino</ion-select-option>
-              <ion-select-option value="vespertino">Vespertino</ion-select-option>
-              <ion-select-option value="mixto">Mixto</ion-select-option>
+            <ion-select aria-label="turno" placeholder="Turno laboral" formControlName="turno">
+              <ion-select-option value="Matutino">Matutino</ion-select-option>
+              <ion-select-option value="Vespertino">Vespertino</ion-select-option>
+              <ion-select-option value="Mixto">Mixto</ion-select-option>
             </ion-select>
           </ion-item>
+          <div *ngIf="employeeForm.get('turno').invalid && employeeForm.get('turno').touched">
+            <p class="text-danger small"><small>El turno es necesario</small></p>
+          </div>
           <!-- Email input -->
           <div class="form-outline mb-2">
-            <ion-input type="email" label="Correo electrónico" label-placement="floating" fill="outline"
-              placeholder="Ingresa tu correo"></ion-input>
+            <ion-input type="email" label="Correo electronico de contacto" label-placement="floating" fill="outline"
+              formControlName="correo" placeholder="Ejemplo. email@domain.com"></ion-input>
+            <div *ngIf="employeeForm.get('correo').invalid && employeeForm.get('correo').touched">
+              <p class="text-danger small"><small>El correo electrónico es requerido y debe ser válido</small></p>
+            </div>
           </div>
           <!-- Password input -->
           <div class="form-outline mb-2">
             <ion-input type="password" label="Contraseña" label-placement="floating" fill="outline"
-              placeholder="Ingresa tu contraseña"></ion-input>
-          </div>
-          <!-- Password valid input -->
-          <div class="form-outline mb-2">
-            <ion-input type="password" label="Confirmar contraseña" label-placement="floating" fill="outline"
-              placeholder="Confirma tu contraseña"></ion-input>
+              formControlName="password" placeholder="Ejemplo. r5LjN8Yvg$MNtFui"></ion-input>
+            <div *ngIf="employeeForm.get('password').invalid && employeeForm.get('password').touched">
+              <p class="text-danger small"><small>La contraseña es requerida y debe tener al menos 8
+                  caracteres</small></p>
+            </div>
           </div>
           <!-- Submit button -->
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button" [routerLink]="['registrar-empleado']">Registrar</button>
+            <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid">Registrar</button>
             <button class="btn btn-secondary btn-block" type="button"
               [routerLink]="['empleado','panel','inicio']">Regresar <i class="bi bi-arrow-return-left"></i></button>
           </div>
