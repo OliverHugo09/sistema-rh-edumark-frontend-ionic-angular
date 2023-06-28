@@ -37,7 +37,7 @@ export class LoginEmployeeComponent implements OnInit {
     this.loginService.login(this.correo, this.password)
       .then(success => {
         if (success) {
-          this.router.navigate(['/empleado']);
+          this.router.navigate(['admin-panel']);
         } else {
           // Manejo de errores al loguearse
           const alert = this.alertController.create({

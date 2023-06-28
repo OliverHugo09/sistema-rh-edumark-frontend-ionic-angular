@@ -33,6 +33,7 @@ import { LoginEntityComponent } from './login/login-entity/login-entity.componen
   ],
   exports: [
     LoginEmployeeComponent,
+    LoginEntityComponent
 
   ]
 })
