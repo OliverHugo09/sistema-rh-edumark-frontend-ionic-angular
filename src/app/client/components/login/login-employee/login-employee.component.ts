@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginEmpleadoService } from 'src/app/client/connection/secure/login-empleado.service';
 import { AlertController } from '@ionic/angular';
 
@@ -14,7 +13,6 @@ export class LoginEmployeeComponent implements OnInit {
 
   constructor(
     private loginService: LoginEmpleadoService,
-    private router: Router,
     private alertController: AlertController
   ) { }
 
@@ -37,7 +35,6 @@ export class LoginEmployeeComponent implements OnInit {
     this.loginService.login(this.correo, this.password)
       .then(success => {
         if (success) {
-          this.router.navigate(['admin-panel']);
         } else {
           // Manejo de errores al loguearse
           const alert = this.alertController.create({
