@@ -10,12 +10,13 @@
       <!-- Email input -->
       <div class="mb-4">
         <ion-label position="stacked">Correo electrónico</ion-label>
-        <ion-input type="email" fill="outline"></ion-input>
+        <ion-input [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" type="email" fill="outline"></ion-input>
       </div>
       <!-- Password input -->
       <div class="mb-4">
         <ion-label position="stacked">Contraseña</ion-label>
-        <ion-input type="password" fill="outline"></ion-input>
+        <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password"
+          fill="outline"></ion-input>
       </div>
 
       <div class="d-flex justify-content-around align-items-center mb-4">
@@ -31,10 +32,10 @@
 
       <!-- Submit button -->
       <div class="d-grid gap-2">
-        <button class="btn btn-primary" type="button" [routerLink]="['empleado']">Iniciar
+        <button class="btn btn-primary" type="button" (click)="login()">Iniciar
           sesión</button>
         <button class="btn btn-primary" type="button" [routerLink]="['registrar-empleado']">Registrate</button>
-        <button class="btn btn-secondary btn-block" type="button" [routerLink]="['admin-panel']"><i
+        <button class="btn btn-secondary btn-block" type="button" [routerLink]="['login']"><i
             class="fab bi bi-box-arrow-up-right me-2"></i>Sistema RH</button>
       </div>
 

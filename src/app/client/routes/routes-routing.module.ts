@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { ProtectRoutesGuard } from '../../connection/secure/protect-routes.guard';
 import { RoutesPage } from './routes.page';
 
 import { RegisterEmployeeComponent } from '../components/register/register-employee/register-employee.component';
