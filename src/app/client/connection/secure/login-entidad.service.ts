@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class LoginEntidadService {
-  private loginUrl = 'http://localhost:5000/entidad/login';
+  private loginUrl = 'http://45.55.66.121/entidad/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
