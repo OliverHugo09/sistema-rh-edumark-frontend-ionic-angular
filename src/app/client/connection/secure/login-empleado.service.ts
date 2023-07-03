@@ -3,18 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 
+const API_URL = environment.API_URL + 'empleado/login';
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginEmpleadoService {
-  private loginUrl = 'http://45.55.66.121/empleado/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
   login(correo: string, password: string): Promise<boolean> {
-
     this.logout();
-    return this.http.post<any>(this.loginUrl, { correo, password })
+    return this.http.post<any>(API_URL, { correo, password })
       .toPromise()
       .then(response => {
         if (response && response.token) {
@@ -42,4 +42,5 @@ export class LoginEmpleadoService {
     const secretKey = localStorage.getItem('secretKey');
     return token !== null && secretKey === environment.SECRET_KEY;
   }
+
 }

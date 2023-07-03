@@ -3,18 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
 
+const API_URL = environment.API_URL + 'entidad/login';
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginEntidadService {
-  private loginUrl = 'http://45.55.66.121/entidad/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
   login(correo: string, password: string): Promise<boolean> {
-
     this.logout();
-    return this.http.post<any>(this.loginUrl, { correo, password })
+    return this.http.post<any>(API_URL, { correo, password })
       .toPromise()
       .then(response => {
         if (response && response.token) {
