@@ -35,6 +35,7 @@ export class LoginEmpleadoService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('secretKey');
+    this.router.navigate(['']);
   }
 
   isLoggedIn(): boolean {
