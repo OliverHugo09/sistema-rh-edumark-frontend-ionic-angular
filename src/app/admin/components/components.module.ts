@@ -9,15 +9,25 @@ import { IonicModule } from '@ionic/angular';
 
 import { NavbarComponent } from './admin-panel/navbar/navbar.component';
 import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
-import { DarkmodeComponent } from './admin-panel/darkmode/darkmode.component';
+import { DarkmodeComponent } from './shared/darkmode/darkmode.component';
 import { MainComponent } from './admin-panel/main/main.component';
+
+import { PanelComponent } from './admin-company/panel/panel.component';
+import { CompanyMainComponent } from './admin-company/company-main/company-main.component';
+import { CompanyNavbarComponent } from './admin-company/company-navbar/company-navbar.component';
+import { CompanySidebarComponent } from './admin-company/company-sidebar/company-sidebar.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     SidebarComponent,
     DarkmodeComponent,
-    MainComponent
+    MainComponent,
+    PanelComponent,
+    CompanyMainComponent,
+    CompanyNavbarComponent,
+    CompanySidebarComponent
+
 
   ],
   imports: [
@@ -31,7 +41,8 @@ import { MainComponent } from './admin-panel/main/main.component';
     NavbarComponent,
     SidebarComponent,
     DarkmodeComponent,
-    MainComponent
+    MainComponent,
+    PanelComponent
   ]
 })
 export class AdminComponentsModule { }

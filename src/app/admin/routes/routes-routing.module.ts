@@ -3,14 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProtectRoutesGuard } from '../../connection/secure/protect-routes.guard';
 import { RoutesPage } from './routes.page';
 
-import { SidebarComponent } from '../components/admin-panel/sidebar/sidebar.component';
+import { PanelComponent } from '../components/admin-company/panel/panel.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: RoutesPage
-  },
-  { path: 'prueba', component: SidebarComponent, canActivateChild: [ProtectRoutesGuard] },
+  { path: '', component: RoutesPage },
+  { path: 'empresa', component: PanelComponent },
 ];
 
 @NgModule({

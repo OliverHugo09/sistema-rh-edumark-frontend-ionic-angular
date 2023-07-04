@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProtectRoutesGuard } from '../../connection/secure/protect-routes.guard';
 import { RoutesPage } from './routes.page';
 
 import { RegisterEmployeeComponent } from '../components/register/register-employee/register-employee.component';
 import { RegisterEntityComponent } from '../components/register/register-entity/register-entity.component';
 import { RegisterCompanyComponent } from '../components/register/register-company/register-company.component';
 import { RegisterOrganizationComponent } from '../components/register/register-organization/register-organization.component';
+
 import { LoginEntityComponent } from '../components/login/login-entity/login-entity.component';
+import { LoginCompanyComponent } from '../components/login/login-company/login-company.component';
+
+import { SelectLoginComponent } from '../components/login/select-login/select-login.component';
+
+
+
+
 
 const routes: Routes = [
   {
@@ -19,6 +26,8 @@ const routes: Routes = [
   { path: 'registrar-organizacion', component: RegisterOrganizationComponent },
   { path: 'registrar-empresa', component: RegisterCompanyComponent },
   { path: 'login', component: LoginEntityComponent },
+  { path: 'login-empresa', component: LoginCompanyComponent },
+  { path: 'tipo-entidad', component: SelectLoginComponent },
 ];
 
 @NgModule({

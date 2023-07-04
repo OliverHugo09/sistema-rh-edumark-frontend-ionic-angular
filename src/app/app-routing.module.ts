@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'admin-panel',
-    loadChildren: () => import('./admin/routes/routes.module').then(m => m.RoutesPageModule)
+    loadChildren: () => import('./admin/routes/routes.module').then(m => m.RoutesPageModule), canActivateChild: [ProtectRoutesGuard]
   },
   {
     path: 'empleado',

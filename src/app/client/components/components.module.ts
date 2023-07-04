@@ -12,6 +12,9 @@ import { RegisterCompanyComponent } from './register/register-company/register-c
 
 import { LoginEmployeeComponent } from './login/login-employee/login-employee.component';
 import { LoginEntityComponent } from './login/login-entity/login-entity.component';
+import { LoginCompanyComponent } from './login/login-company/login-company.component';
+
+import { SelectLoginComponent } from './login/select-login/select-login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { LoginEntityComponent } from './login/login-entity/login-entity.componen
     RegisterOrganizationComponent,
     RegisterCompanyComponent,
     LoginEmployeeComponent,
-    LoginEntityComponent
+    LoginEntityComponent,
+    LoginCompanyComponent,
+    SelectLoginComponent
   ],
   imports: [
     CommonModule,
