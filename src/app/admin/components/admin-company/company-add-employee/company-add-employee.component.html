@@ -40,31 +40,13 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let employee of employees">
               <tr>
-                <td>1</td>
-                <td>Jose Roberto Almada Orozco</td>
-                <td>Gerente</td>
-                <td>JoseAlmada@gmail.com</td>
-                <td>9846548256</td>
-                <td>
-                  <button type="button" class="btn btn-secondary btn-sm me-1">
-                    <i class="bi-person-vcard"></i>
-                  </button>
-                  <button type="button" class="btn btn-warning btn-sm me-1">
-                    <i class="bi-pencil"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger btn-sm">
-                    <i class="bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Angel Diaz Perez</td>
-                <td>Practicante</td>
-                <td>AngelPerez@gmail.com</td>
-                <td>9846548256</td>
+                <td>{{ employee.noColaborador }}</td>
+                <td>{{ employee.nombre }}</td>
+                <td>{{ employee.puesto }}</td>
+                <td>{{ employee.correo }}</td>
+                <td>{{ employee.telefono }}</td>
                 <td>
                   <button type="button" class="btn btn-secondary btn-sm me-1">
                     <i class="bi-person-vcard"></i>
