@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { IonModal } from '@ionic/angular';
 
 import { Employee } from '../../../../interface/employee';
 
@@ -21,7 +22,18 @@ let entidadId = parseInt(entidadIdNumerico)
   styleUrls: ['./company-add-employee.component.scss'],
 })
 export class CompanyAddEmployeeComponent implements OnInit {
+  @ViewChild(IonModal) modal: IonModal;
   employeeForm: FormGroup;
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = false; // Establecer el estado como false primero para cerrar el modal
+
+    setTimeout(() => {
+      // Restablecer el formulario del modal
+      this.isModalOpen = isOpen; // Establecer el estado como true para abrir el modal nuevamente
+    }, 10);
+  }
 
   employee: Employee = {
     id: null,
@@ -33,7 +45,7 @@ export class CompanyAddEmployeeComponent implements OnInit {
     puesto: '',
     turno: '',
     password: '',
-    empresaId: empresaId,
+    empresaId: null,
     entidadId: null,
   }
 
@@ -51,8 +63,6 @@ export class CompanyAddEmployeeComponent implements OnInit {
   ngOnInit() {
 
     this.employeeForm = new FormGroup({
-      entidadId: new FormControl(null),
-      empresaId: new FormControl(null, Validators.required),
       nombre: new FormControl(null, Validators.required),
       noColaborador: new FormControl(null, Validators.required),
       departamento: new FormControl(null, Validators.required,),
@@ -89,26 +99,32 @@ export class CompanyAddEmployeeComponent implements OnInit {
       return;
     }
 
-    const employeeData = this.employeeForm.value;
+    const employeeData = {
+      ...this.employeeForm.value,
+      empresaId: empresaId, // Agregar el valor de empresaId desde localStorage
+    };
 
     this.service.addEmployee(employeeData).subscribe(
       () => {
         // Operaciones adicionales después de agregar la empresa
         const alert = this.alertController.create({
           header: 'Éxito✔️',
-          subHeader: '¡Todo salio bien!',
+          subHeader: '¡Todo salió bien!',
           message: 'Te has registrado con éxito',
           buttons: ['OK'],
         }).then((alert) => {
           alert.present(); // Mostrar el alert {
-          this.router.navigate(['']); // Redirigir a la ruta '/login' después de cerrar la alerta
+          // Reiniciar el formulario del modal
+          this.employeeForm.reset();
+          // Cerrar el modal
+          this.setOpen(false);
         });
       },
       (error) => {
         // Manejo de errores al agregar la empresa
         const alert = this.alertController.create({
           header: 'Error❌',
-          subHeader: '¡Algo salio mal!',
+          subHeader: '¡Algo salió mal!',
           message: 'No se ha podido completar tu registro',
           buttons: ['OK'],
         }).then((alert) => {

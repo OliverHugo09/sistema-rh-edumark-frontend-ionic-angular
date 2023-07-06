@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { IonicModule } from '@ionic/angular';
@@ -37,7 +38,8 @@ import { CompanyAddEmployeeComponent } from './admin-company/company-add-employe
     RouterModule,
     FormsModule,
     NgbModule,
-    IonicModule
+    IonicModule,
+    ReactiveFormsModule,
   ],
   exports: [
     NavbarComponent,

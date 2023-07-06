@@ -31,11 +31,11 @@ export class EmployeeCompanyService {
   }
 
   updateEmployee(id: number, entity: Employee): Observable<any> {
-    return this.http.put(`${API_URL_EMPLOYEE}${id}`, entity, httpOptions);
+    return this.http.put(`${API_URL}${id}`, entity, httpOptions);
   }
 
   deleteEmployee(id: number) {
-    return this.http.delete(`${API_URL_EMPLOYEE}${id}`, httpOptions);
+    return this.http.delete(`${API_URL}${id}`, httpOptions);
   }
 
 }
