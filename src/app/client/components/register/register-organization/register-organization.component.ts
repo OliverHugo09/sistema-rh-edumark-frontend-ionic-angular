@@ -5,9 +5,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-import { Organizationtype } from '../../../interface/organizationtype';
-import { Giro } from 'src/app/client/interface/giro';
-import { Organization } from 'src/app/client/interface/organization';
+import { Organizationtype } from '../../../../interface/organizationtype';
+import { Giro } from 'src/app/interface/giro';
+import { Organization } from 'src/app/interface/organization';
 
 import { CrudTipoentidadService } from '../../../connection/api/crud-tipoentidad.service';
 import { CrudOrganizationService } from '../../../connection/api/crud-organization.service';

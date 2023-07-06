@@ -35,7 +35,7 @@ export class LoginEntidadService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('secretKey');
-    this.router.navigate(['login']);
+    this.router.navigate(['tipo-entidad']);
   }
 
   isLoggedIn(): boolean {

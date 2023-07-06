@@ -16,6 +16,7 @@ import { PanelComponent } from './admin-company/panel/panel.component';
 import { CompanyMainComponent } from './admin-company/company-main/company-main.component';
 import { CompanyNavbarComponent } from './admin-company/company-navbar/company-navbar.component';
 import { CompanySidebarComponent } from './admin-company/company-sidebar/company-sidebar.component';
+import { CompanyAddEmployeeComponent } from './admin-company/company-add-employee/company-add-employee.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CompanySidebarComponent } from './admin-company/company-sidebar/company
     PanelComponent,
     CompanyMainComponent,
     CompanyNavbarComponent,
-    CompanySidebarComponent
+    CompanySidebarComponent,
+    CompanyAddEmployeeComponent
 
 
   ],
@@ -42,7 +44,7 @@ import { CompanySidebarComponent } from './admin-company/company-sidebar/company
     SidebarComponent,
     DarkmodeComponent,
     MainComponent,
-    PanelComponent
+    PanelComponent,
   ]
 })
 export class AdminComponentsModule { }

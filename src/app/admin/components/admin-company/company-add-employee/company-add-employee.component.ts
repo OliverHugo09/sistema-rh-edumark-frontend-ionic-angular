@@ -5,31 +5,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-import { Organization } from '../../../../interface/organization';
-import { Company } from '../../../../interface/company';
 import { Employee } from '../../../../interface/employee';
 
-import { CrudOrganizationService } from '../../../connection/api/crud-organization.service';
-import { CrudCompanyService } from '../../../connection/api/crud-company.service';
-import { CrudEmployeeService } from '../../../connection/api/crud-employee.service';
+import { EmployeeCompanyService } from '../../../connection/api/employee-company.service';
+
+let empresaIdNumerico = localStorage.getItem('empresaId');
+let empresaId = parseInt(empresaIdNumerico);
+
+let entidadIdNumerico = localStorage.getItem('entidadId')
+let entidadId = parseInt(entidadIdNumerico)
 
 @Component({
-  selector: 'app-register-employee',
-  templateUrl: './register-employee.component.html',
-  styleUrls: ['./register-employee.component.scss'],
+  selector: 'app-company-add-employee',
+  templateUrl: './company-add-employee.component.html',
+  styleUrls: ['./company-add-employee.component.scss'],
 })
-export class RegisterEmployeeComponent implements OnInit, OnDestroy {
+export class CompanyAddEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
-
-  public getOrganization(organization: Organization): { id: number, nombre: string } {
-    const { id, nombre } = organization;
-    return { id, nombre };
-  }
-
-  public getcompany(company: Company): { id: number, nombre: string } {
-    const { id, nombre } = company;
-    return { id, nombre };
-  }
 
   employee: Employee = {
     id: null,
@@ -41,20 +33,17 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
     puesto: '',
     turno: '',
     password: '',
-    empresaId: 0,
+    empresaId: empresaId,
     entidadId: null,
   }
 
   private subscriptions: Array<Subscription> = [];
-  organizations: Organization[];
-  companys: Company[];
   location: any;
+  employees: Employee[];
 
   constructor(
     public modalController: ModalController,
-    private companyService: CrudCompanyService,
-    private employeeService: CrudEmployeeService,
-    private organizationService: CrudOrganizationService,
+    private service: EmployeeCompanyService,
     private router: Router,
     private alertController: AlertController
   ) { }
@@ -83,19 +72,14 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
       ]),
     });
 
-    const newOrganizations = this.organizationService.getOrganizations().subscribe(
+    const newEmployees = this.service.getEmployees(empresaId).subscribe(
       next => {
-        this.organizations = next;
-        console.log(this.organizations)
+        this.employees = next;
+        console.log(this.employees)
       }
     );
 
-    const newCompanys = this.companyService.getCompanys().subscribe(
-      next => {
-        this.companys = next;
-      }
-    );
-    this.subscriptions.push(newOrganizations, newCompanys);
+    this.subscriptions.push(newEmployees);
   }
 
   addEmployee(): void {
@@ -107,7 +91,7 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
 
     const employeeData = this.employeeForm.value;
 
-    this.employeeService.addEmployee(employeeData).subscribe(
+    this.service.addEmployee(employeeData).subscribe(
       () => {
         // Operaciones adicionales después de agregar la empresa
         const alert = this.alertController.create({
@@ -132,10 +116,6 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
         });
       }
     );
-  }
-
-  compareFn(option1: any, option2: any): boolean {
-    return option1 === option2 || (option1 === null && option2 === undefined) || (option1 === undefined && option2 === null);
   }
 
   ngOnDestroy(): void {

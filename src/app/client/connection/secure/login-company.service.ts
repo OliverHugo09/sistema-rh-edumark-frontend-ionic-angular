@@ -18,6 +18,7 @@ export class LoginCompanyService {
       .toPromise()
       .then(response => {
         if (response && response.token) {
+          localStorage.setItem('empresaId', response.empresa.id);
           localStorage.setItem('token', response.token);
           localStorage.setItem('secretKey', environment.SECRET_KEY);
           this.router.navigate(['admin-panel', 'empresa']);
@@ -35,6 +36,7 @@ export class LoginCompanyService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('secretKey');
+    localStorage.removeItem('empresaId');
     this.router.navigate(['login', 'empresa']);
   }
 

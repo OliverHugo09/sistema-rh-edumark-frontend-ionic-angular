@@ -5,9 +5,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
-import { Giro } from '../../../interface/giro';
-import { Organization } from '../../../interface/organization';
-import { Company } from '../../../interface/company';
+import { Giro } from '../../../../interface/giro';
+import { Organization } from '../../../../interface/organization';
+import { Company } from '../../../../interface/company';
 
 import { CrudOrganizationService } from '../../../connection/api/crud-organization.service';
 import { CrudGiroService } from '../../../connection/api/crud-giro.service';
@@ -74,7 +74,7 @@ export class RegisterCompanyComponent implements OnInit, OnDestroy {
       representante: new FormControl(null, Validators.required),
       telefono: new FormControl(null, [
         Validators.required,
-        Validators.pattern(/^[\d-]{10,20}$/),
+        Validators.pattern(/^[\d-+()]{10,20}$/),
       ]),
       correo: new FormControl(null, [
         Validators.required,

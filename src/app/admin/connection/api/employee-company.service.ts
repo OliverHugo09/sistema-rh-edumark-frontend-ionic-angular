@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Employee } from '../../../interface/employee';
 
-const API_URL = environment.API_URL + 'empleado/';
+const API_URL = environment.API_URL + 'empleado/empresa/';
+const API_URL_EMPLOYEE = environment.API_URL + 'empleado/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,27 +14,28 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class CrudEmployeeService {
+export class EmployeeCompanyService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(API_URL);
+  getEmployee(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${API_URL_EMPLOYEE}${id}`)
   }
 
-  getEmployee(id: number): Observable<Employee> {
-    return this.http.get<Employee>(`${API_URL}${id}`)
+  getEmployees(id: number): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${API_URL}${id}`, httpOptions);
   }
 
   addEmployee(entity: Employee): Observable<any> {
-    return this.http.post(API_URL, entity, httpOptions);
+    return this.http.post(API_URL_EMPLOYEE, entity, httpOptions);
   }
 
   updateEmployee(id: number, entity: Employee): Observable<any> {
-    return this.http.put(`${API_URL}${id}`, entity, httpOptions);
+    return this.http.put(`${API_URL_EMPLOYEE}${id}`, entity, httpOptions);
   }
 
   deleteEmployee(id: number) {
-    return this.http.delete(`${API_URL}${id}`, httpOptions);
+    return this.http.delete(`${API_URL_EMPLOYEE}${id}`, httpOptions);
   }
+
 }

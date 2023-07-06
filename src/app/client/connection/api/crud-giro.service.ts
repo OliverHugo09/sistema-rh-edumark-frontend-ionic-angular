@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Giro } from '../../interface/giro';
+import { Giro } from '../../../interface/giro';
 
 const API_URL = environment.API_URL + 'giro/';
 
