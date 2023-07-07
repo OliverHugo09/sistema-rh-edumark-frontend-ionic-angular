@@ -15,8 +15,8 @@
       <!-- Password input -->
       <div class="mb-4">
         <ion-label position="stacked">Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password"
-          fill="outline"></ion-input>
+        <ion-input [(ngModel)]="password" (keydown.enter)="login()" [ngModelOptions]="{standalone: true}"
+          type="password" fill="outline"></ion-input>
       </div>
 
       <div class="d-flex justify-content-around align-items-center mb-4">

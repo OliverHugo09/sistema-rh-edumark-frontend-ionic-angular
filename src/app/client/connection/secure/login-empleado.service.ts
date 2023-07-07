@@ -20,7 +20,7 @@ export class LoginEmpleadoService {
         if (response && response.token) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('secretKey', environment.SECRET_KEY);
-          this.router.navigate(['empleado']);
+          this.router.navigate(['', 'empleado']);
           return true;
         } else {
           return false;

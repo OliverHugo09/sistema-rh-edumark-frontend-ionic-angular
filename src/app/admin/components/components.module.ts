@@ -18,6 +18,7 @@ import { CompanyMainComponent } from './admin-company/company-main/company-main.
 import { CompanyNavbarComponent } from './admin-company/company-navbar/company-navbar.component';
 import { CompanySidebarComponent } from './admin-company/company-sidebar/company-sidebar.component';
 import { CompanyAddEmployeeComponent } from './admin-company/company-add-employee/company-add-employee.component';
+import { CompanyEditComponent } from './admin-company/company-edit/company-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CompanyAddEmployeeComponent } from './admin-company/company-add-employe
     CompanyMainComponent,
     CompanyNavbarComponent,
     CompanySidebarComponent,
-    CompanyAddEmployeeComponent
+    CompanyAddEmployeeComponent,
+    CompanyEditComponent
 
 
   ],
