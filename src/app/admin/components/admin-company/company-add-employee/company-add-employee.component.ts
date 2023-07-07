@@ -85,11 +85,18 @@ export class CompanyAddEmployeeComponent implements OnInit {
     const newEmployees = this.service.getEmployees(empresaId).subscribe(
       next => {
         this.employees = next;
-        console.log(this.employees)
       }
     );
 
     this.subscriptions.push(newEmployees);
+  }
+
+  refreshEmployees(): void {
+    this.service.getEmployees(empresaId).subscribe(
+      (employees) => {
+        this.employees = employees;
+      }
+    );
   }
 
   addEmployee(): void {
@@ -118,6 +125,7 @@ export class CompanyAddEmployeeComponent implements OnInit {
           this.employeeForm.reset();
           // Cerrar el modal
           this.setOpen(false);
+          this.refreshEmployees(); // Actualizar la lista de empleados
         });
       },
       (error) => {
