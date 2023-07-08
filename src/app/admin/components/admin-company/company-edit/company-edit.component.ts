@@ -148,10 +148,24 @@ export class CompanyEditComponent implements OnInit {
 
       this.http.post(API_IMAGE + 'empresa/image/' + empresaId, formData).subscribe(
         (response) => {
-          console.log(response);
+          const alert = this.alertController.create({
+            header: 'Éxito✔️',
+            subHeader: '¡Todo salió bien!',
+            message: 'Imagen subida con éxito',
+            buttons: ['OK'],
+          }).then((alert) => {
+            alert.present();
+          });
         },
         (error) => {
-          console.log(error);
+          const alert = this.alertController.create({
+            header: 'Error❌',
+            subHeader: '¡Algo salió mal!',
+            message: 'No se pudo subir la imagen',
+            buttons: ['OK'],
+          }).then((alert) => {
+            alert.present();
+          });
         }
       );
     }

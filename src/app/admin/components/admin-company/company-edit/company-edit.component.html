@@ -109,15 +109,13 @@
                     caracteres</small></p>
               </div>
             </div>
-            <div>
-              <ion-item>
-                <ion-icon slot="start" name="image-outline"></ion-icon>
-                <ion-label>
-                  <ion-button fill="clear" (click)="onAddImageClick()">Agregar imagen</ion-button>
-                  <input type="file" accept="image/*" #fileInput hidden (change)="onFileChange($event)">
-                </ion-label>
-              </ion-item>
+            <div class="btn-outline-secondary gap-2 mb-2">
+              <button type="button" (click)="onAddImageClick()" class="btn btn-sm btn-outline-secondary"><i
+                  class="bi bi-image"></i> Agregar
+                imagen</button>
+              <input type="file" accept="image/*" #fileInput hidden (change)="onFileChange($event)">
             </div>
+
             <!-- Submit button -->
             <div class="d-grid gap-2">
               <button class="btn btn-primary" type="submit" [disabled]="companyForm.invalid">Editar</button>
