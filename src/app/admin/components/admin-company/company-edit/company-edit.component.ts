@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,9 +12,13 @@ import { Company } from '../../../../interface/company';
 import { CrudOrganizationService } from '../../../../client/connection/api/crud-organization.service';
 import { CrudGiroService } from '../../../../client/connection/api/crud-giro.service';
 import { CrudCompanyService } from '../../../../client/connection/api/crud-company.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
+
+let API_IMAGE = environment.API_URL;
 
 @Component({
   selector: 'app-company-edit',
@@ -22,6 +26,7 @@ let empresaId = parseInt(empresaIdNumerico);
   styleUrls: ['./company-edit.component.scss'],
 })
 export class CompanyEditComponent implements OnInit {
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   companyForm: FormGroup;
 
   public getOrganization(organization: Organization): { id: number, nombre: string } {
@@ -58,7 +63,8 @@ export class CompanyEditComponent implements OnInit {
     private giroService: CrudGiroService,
     private organizationService: CrudOrganizationService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -131,6 +137,28 @@ export class CompanyEditComponent implements OnInit {
         });
       }
     );
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append('upload', file, file.name);
+
+      this.http.post(API_IMAGE + 'empresa/image/' + empresaId, formData).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  onAddImageClick() {
+    this.fileInput.nativeElement.click();
   }
 
 

@@ -25,7 +25,6 @@
             </button>
           </div>
         </div>
-
         <h2>Editar los datos de la empresa</h2>
         <div class="col-sm-12 col-md-12 p-3 shadow-lg rounded">
           <form [formGroup]="companyForm" (ngSubmit)="editCompany()">
@@ -109,6 +108,15 @@
                 <p class="text-danger small"><small>La contraseña es requerida y debe tener al menos 8
                     caracteres</small></p>
               </div>
+            </div>
+            <div>
+              <ion-item>
+                <ion-icon slot="start" name="image-outline"></ion-icon>
+                <ion-label>
+                  <ion-button fill="clear" (click)="onAddImageClick()">Agregar imagen</ion-button>
+                  <input type="file" accept="image/*" #fileInput hidden (change)="onFileChange($event)">
+                </ion-label>
+              </ion-item>
             </div>
             <!-- Submit button -->
             <div class="d-grid gap-2">
