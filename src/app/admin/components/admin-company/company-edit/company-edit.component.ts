@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 import { Giro } from '../../../../interface/giro';
 import { Organization } from '../../../../interface/organization';
@@ -12,8 +14,8 @@ import { Company } from '../../../../interface/company';
 import { CrudOrganizationService } from '../../../../client/connection/api/crud-organization.service';
 import { CrudGiroService } from '../../../../client/connection/api/crud-giro.service';
 import { CrudCompanyService } from '../../../../client/connection/api/crud-company.service';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
@@ -48,6 +50,7 @@ export class CompanyEditComponent implements OnInit {
     correo: '',
     rfc: '',
     password: '',
+    foto: '',
     giroId: 0,
     entidadId: null,
   }
@@ -64,7 +67,8 @@ export class CompanyEditComponent implements OnInit {
     private organizationService: CrudOrganizationService,
     private router: Router,
     private alertController: AlertController,
-    private http: HttpClient
+    private http: HttpClient,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -78,7 +82,8 @@ export class CompanyEditComponent implements OnInit {
       representante: new FormControl(null),
       telefono: new FormControl(null),
       correo: new FormControl(null),
-      password: new FormControl(null)
+      password: new FormControl(null),
+      foto: new FormControl(null)
     });
 
     this.companyService.getCompany(empresaId).subscribe(
@@ -103,6 +108,17 @@ export class CompanyEditComponent implements OnInit {
       }
     );
     this.subscriptions.push(newOrganizations, newGiros);
+  }
+
+  refreshCompany(): void {
+    this.companyService.getCompany(empresaId).subscribe(
+      (companyData) => {
+        this.company = companyData;
+      },
+      (error) => {
+        console.log('Error al obtener los datos de la empresa', error);
+      }
+    );
   }
 
   editCompany(): void {

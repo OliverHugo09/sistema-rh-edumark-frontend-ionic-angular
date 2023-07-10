@@ -6,6 +6,7 @@ export interface Company {
     telefono: string;
     correo: string;
     rfc: string;
+    foto: string;
     password: string;
     giroId: number;
     entidadId: number | null;
