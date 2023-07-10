@@ -3,9 +3,11 @@ import { Subscription } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+
+import { AlertController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 import { Giro } from '../../../../interface/giro';
 import { Organization } from '../../../../interface/organization';
@@ -68,7 +70,7 @@ export class CompanyEditComponent implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private http: HttpClient,
-    private cdRef: ChangeDetectorRef
+    private loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -110,17 +112,6 @@ export class CompanyEditComponent implements OnInit {
     this.subscriptions.push(newOrganizations, newGiros);
   }
 
-  refreshCompany(): void {
-    this.companyService.getCompany(empresaId).subscribe(
-      (companyData) => {
-        this.company = companyData;
-      },
-      (error) => {
-        console.log('Error al obtener los datos de la empresa', error);
-      }
-    );
-  }
-
   editCompany(): void {
     if (this.companyForm.invalid) {
       this.companyForm.markAllAsTouched();
@@ -155,37 +146,56 @@ export class CompanyEditComponent implements OnInit {
     );
   }
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
 
-    if (file) {
-      const formData = new FormData();
-      formData.append('upload', file, file.name);
 
-      this.http.post(API_IMAGE + 'empresa/image/' + empresaId, formData).subscribe(
-        (response) => {
-          const alert = this.alertController.create({
-            header: 'Éxito✔️',
-            subHeader: '¡Todo salió bien!',
-            message: 'Imagen subida con éxito',
-            buttons: ['OK'],
-          }).then((alert) => {
-            alert.present();
-          });
-        },
-        (error) => {
-          const alert = this.alertController.create({
-            header: 'Error❌',
-            subHeader: '¡Algo salió mal!',
-            message: 'No se pudo subir la imagen',
-            buttons: ['OK'],
-          }).then((alert) => {
-            alert.present();
-          });
-        }
-      );
+  async onFileChange(event: any) {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      message: 'Subiendo imagen...',
+      cssClass: 'custom-loading',
+      translucent: true,
+      backdropDismiss: false
+    });
+
+    try {
+      await loading.present();
+      const file = event.target.files[0];
+
+      if (file) {
+        const formData = new FormData();
+        formData.append('upload', file, file.name);
+
+        this.http.post(API_IMAGE + 'empresa/image/' + empresaId, formData).subscribe(
+          (response) => {
+            const alert = this.alertController.create({
+              header: 'Éxito✔️',
+              subHeader: '¡Todo salió bien!',
+              message: 'Imagen subida con éxito',
+              buttons: ['OK'],
+            }).then(async (alert) => {
+              await loading.dismiss();
+              alert.present();
+            });
+          },
+          (error) => {
+            const alert = this.alertController.create({
+              header: 'Error❌',
+              subHeader: '¡Algo salió mal!',
+              message: 'No se pudo subir la imagen',
+              buttons: ['OK'],
+            }).then((alert) => {
+              alert.present();
+            });
+          }
+        );
+      }
+    } catch (error) {
+      console.error('Error al subir la imagen', error);
+      // Manejar el error de manera apropiada (mostrar mensaje de error, etc.)
+      await loading.dismiss();
     }
   }
+
 
   onAddImageClick() {
     this.fileInput.nativeElement.click();
