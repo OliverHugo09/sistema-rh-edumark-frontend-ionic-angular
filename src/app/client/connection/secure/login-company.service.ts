@@ -13,17 +13,24 @@ export class LoginCompanyService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(correo: string, password: string): Promise<boolean> {
-    this.logout();
+    this.removeItems();
     return this.http.post<any>(API_URL, { correo, password })
       .toPromise()
       .then(response => {
         if (response && response.token) {
-          localStorage.setItem('empresaId', response.empresa.id);
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('secretKey', environment.SECRET_KEY);
-          this.router.navigate(['admin-panel', 'empresa']);
-          return true;
+          // Verificar si el correo y la contraseña son correctos
+          if (correo === response.empresa.correo && password === response.empresa.password) {
+            localStorage.setItem('empresaId', response.empresa.id);
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('secretKey', environment.SECRET_KEY);
+            this.router.navigate(['admin-panel', 'empresa']);
+            return true;
+          } else {
+            // Contraseña o correo incorrectos
+            return false;
+          }
         } else {
+          // No se obtuvo un token en la respuesta
           return false;
         }
       })
@@ -34,10 +41,14 @@ export class LoginCompanyService {
   }
 
   logout(): void {
+    this.removeItems();
+    this.router.navigate(['login', 'empresa']);
+  }
+
+  removeItems(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('secretKey');
     localStorage.removeItem('empresaId');
-    this.router.navigate(['login', 'empresa']);
   }
 
   isLoggedIn(): boolean {
