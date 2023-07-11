@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Employee } from '../../../interface/employee';
 
 const API_URL = environment.API_URL + 'empleado/';
+const API_URL_LINK = environment.API_URL + 'empleado/register/:id';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,6 +28,10 @@ export class CrudEmployeeService {
 
   addEmployee(entity: Employee): Observable<any> {
     return this.http.post(API_URL, entity, httpOptions);
+  }
+
+  addEmployeeLink(entity: Employee): Observable<any> {
+    return this.http.post(API_URL_LINK, entity, httpOptions);
   }
 
   updateEmployee(id: number, entity: Employee): Observable<any> {

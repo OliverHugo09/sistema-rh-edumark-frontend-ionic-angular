@@ -12,16 +12,12 @@ import { LoginCompanyComponent } from '../components/login/login-company/login-c
 
 import { SelectLoginComponent } from '../components/login/select-login/select-login.component';
 
-
-
-
-
 const routes: Routes = [
   {
     path: '',
     component: RoutesPage
   },
-  { path: 'registrar-empleado', component: RegisterEmployeeComponent },
+  { path: 'registrar-empleado/:id', component: RegisterEmployeeComponent },
   { path: 'registrar-entidad', component: RegisterEntityComponent },
   { path: 'registrar-organizacion', component: RegisterOrganizationComponent },
   { path: 'registrar-empresa', component: RegisterCompanyComponent },

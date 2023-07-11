@@ -5,26 +5,6 @@
       <div class="col-sm-12 col-md-12 p-3 shadow-lg rounded">
         <h1 class="mb-2">Registrate como empleado</h1>
         <form [formGroup]="employeeForm" (ngSubmit)="addEmployee()">
-          <!-- Entity box -->
-          <ion-item lines="full" class="mb-2">
-            <ion-select [compareWith]="compareFn" aria-label="entidades" interface="action-sheet"
-              formControlName="entidadId" label="Selecciona tu organización">
-              <ion-select-option [value]="null">Ninguno</ion-select-option>
-              <ion-select-option *ngFor="let organization of organizations" [value]="organization.id">{{
-                organization.nombre }}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <!-- Empresa box -->
-          <ion-item lines="full" class="mb-2">
-            <ion-select aria-label="empresas" interface="action-sheet"
-              placeholder="Selecciona la empresa a la que perteneces" formControlName="empresaId">
-              <ion-select-option *ngFor="let company of companys" [value]="company.id">{{ company.nombre
-                }}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <div *ngIf="employeeForm.get('empresaId').invalid && employeeForm.get('empresaId').touched">
-            <p class="text-danger small"><small>La empresa es requerida</small></p>
-          </div>
           <!-- Full name -->
           <div class="form-outline mb-2">
             <ion-input type="text" label="Nombre completo" label-placement="floating" fill="outline"

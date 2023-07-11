@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 import { Organization } from '../../../../interface/organization';
 import { Company } from '../../../../interface/company';
@@ -56,14 +57,17 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
     private employeeService: CrudEmployeeService,
     private organizationService: CrudOrganizationService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
 
+    const id = this.route.snapshot.params['id'];
+
     this.employeeForm = new FormGroup({
       entidadId: new FormControl(null),
-      empresaId: new FormControl(null, Validators.required),
+      empresaId: new FormControl(null),
       nombre: new FormControl(null, Validators.required),
       noColaborador: new FormControl(null, Validators.required),
       departamento: new FormControl(null, Validators.required,),
@@ -107,7 +111,7 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
 
     const employeeData = this.employeeForm.value;
 
-    this.employeeService.addEmployee(employeeData).subscribe(
+    this.employeeService.addEmployeeLink(employeeData).subscribe(
       () => {
         // Operaciones adicionales después de agregar la empresa
         const alert = this.alertController.create({
