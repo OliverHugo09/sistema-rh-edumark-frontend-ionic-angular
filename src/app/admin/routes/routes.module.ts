@@ -15,7 +15,7 @@ import { AdminComponentsModule } from '../components/components.module';
     FormsModule,
     IonicModule,
     RoutesPageRoutingModule,
-    AdminComponentsModule,
+    AdminComponentsModule
 
   ],
   declarations: [RoutesPage]

@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { IonicModule } from '@ionic/angular';
+
+import { QuillModule } from 'ngx-quill';
 
 import { NavbarComponent } from './admin-panel/navbar/navbar.component';
 import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
@@ -19,6 +20,7 @@ import { CompanyNavbarComponent } from './admin-company/company-navbar/company-n
 import { CompanySidebarComponent } from './admin-company/company-sidebar/company-sidebar.component';
 import { CompanyAddEmployeeComponent } from './admin-company/company-add-employee/company-add-employee.component';
 import { CompanyEditComponent } from './admin-company/company-edit/company-edit.component';
+import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blogs.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { CompanyEditComponent } from './admin-company/company-edit/company-edit.
     CompanyNavbarComponent,
     CompanySidebarComponent,
     CompanyAddEmployeeComponent,
-    CompanyEditComponent
+    CompanyEditComponent,
+    CompanyBlogsComponent
 
 
   ],
@@ -42,13 +45,14 @@ import { CompanyEditComponent } from './admin-company/company-edit/company-edit.
     NgbModule,
     IonicModule,
     ReactiveFormsModule,
+    QuillModule
   ],
   exports: [
     NavbarComponent,
     SidebarComponent,
     DarkmodeComponent,
     MainComponent,
-    PanelComponent,
+    PanelComponent
   ]
 })
 export class AdminComponentsModule { }
