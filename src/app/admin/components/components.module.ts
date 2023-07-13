@@ -45,7 +45,7 @@ import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blo
     NgbModule,
     IonicModule,
     ReactiveFormsModule,
-    QuillModule
+    QuillModule.forRoot(),
   ],
   exports: [
     NavbarComponent,

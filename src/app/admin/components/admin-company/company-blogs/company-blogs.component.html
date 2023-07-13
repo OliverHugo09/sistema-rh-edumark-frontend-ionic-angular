@@ -28,12 +28,16 @@
         </div>
 
         <h2>Crea un nuevo blog</h2>
+
         <div>
-          <quill-editor [(ngModel)]="blogContent"></quill-editor>
+          <div class="ql-toolbar">
+            <div id="editor"></div>
+          </div>
+          <quill-editor id="editor2" [modules]="modules" [(ngModel)]="blogContent"></quill-editor>
           <pre>{{ blogContent }}</pre>
           <div [innerHTML]="sanitizeHtml(blogContent)"></div>
         </div>
-        <button (click)="createBlog()">Crear Blog</button>
+        <button (click)="createBlog2()">Crear Blog</button>
         <div>
         </div>
       </main>
