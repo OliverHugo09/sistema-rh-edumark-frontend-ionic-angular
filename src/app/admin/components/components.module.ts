@@ -21,6 +21,7 @@ import { CompanySidebarComponent } from './admin-company/company-sidebar/company
 import { CompanyAddEmployeeComponent } from './admin-company/company-add-employee/company-add-employee.component';
 import { CompanyEditComponent } from './admin-company/company-edit/company-edit.component';
 import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blogs.component';
+import { CompanyCalendarComponent } from './admin-company/company-calendar/company-calendar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blo
     CompanySidebarComponent,
     CompanyAddEmployeeComponent,
     CompanyEditComponent,
-    CompanyBlogsComponent
+    CompanyBlogsComponent,
+    CompanyCalendarComponent
 
 
   ],
