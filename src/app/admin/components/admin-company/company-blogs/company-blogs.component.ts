@@ -5,6 +5,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Blog } from '../../../../interface/blog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { AlertController } from '@ionic/angular';
+
 import { Options } from 'ngx-quill-upload';
 
 import Quill from 'quill';
@@ -38,7 +40,7 @@ export class CompanyBlogsComponent implements OnInit {
     description: ''
   };
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private sanitizer: DomSanitizer) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private sanitizer: DomSanitizer, private alertController: AlertController,) { }
 
   ngAfterViewInit() {
     this.editor.on('text-change', () => {
@@ -120,27 +122,17 @@ export class CompanyBlogsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  createBlog() {
-    const sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.blogContent);
-    console.log(sanitizedContent);
-    const blogData = {
-      content: sanitizedContent["changingThisBreaksApplicationSecurity"],
-      empresaId: empresaId
-    };
-
-    this.http.post(`${environment.API_URL}blog`, blogData)
-      .subscribe(response => {
-        console.log('Blog creado exitosamente', response);
-      }, error => {
-        console.error('Error al crear el blog', error);
+  createBlog(): void {
+    if (this.blogContent === undefined || this.blogContent === null) {
+      this.blogForm.markAllAsTouched();
+      const alert = this.alertController.create({
+        header: 'Error ❌',
+        subHeader: 'Blog invalido',
+        message: 'Por favor llena el blog con el contenido requerido',
+        buttons: ['OK'],
+      }).then((alert) => {
+        alert.present();
       });
-  }
-
-  createBlog2() {
-    this.blogForm.markAllAsTouched();
-
-    if (this.blogForm.invalid) {
-      // Si el formulario es inválido, muestra un mensaje de error o realiza alguna acción apropiada
       return;
     }
 
@@ -153,10 +145,29 @@ export class CompanyBlogsComponent implements OnInit {
     };
 
     this.http.post(`${environment.API_URL}blog`, blogData)
-      .subscribe(response => {
-        console.log('Blog creado exitosamente', response);
-      }, error => {
-        console.error('Error al crear el blog', error);
-      });
+      .subscribe(
+        () => {
+          const alert = this.alertController.create({
+            header: 'Éxito ✔️',
+            subHeader: 'Blog creado',
+            message: 'Blog creado exitosamente',
+            buttons: ['OK'],
+          }).then((alert) => {
+            alert.present();
+          });
+          console.log('Blog creado exitosamente');
+        },
+        (error) => {
+          const alert = this.alertController.create({
+            header: 'Error ❌',
+            subHeader: 'Error al crear el blog',
+            message: 'No se pudo crear el blog',
+            buttons: ['OK'],
+          }).then((alert) => {
+            alert.present();
+          });
+          console.error('Error al crear el blog', error);
+        }
+      );
   }
 }
