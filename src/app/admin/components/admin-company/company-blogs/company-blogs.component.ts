@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Blog } from '../../../../interface/blog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Options } from 'ngx-quill-upload';
 
@@ -26,15 +27,18 @@ export class CompanyBlogsComponent implements OnInit {
   blogContent: string;
   modules: any;
   editor: Quill;
+  blogForm: FormGroup;
 
   blog: Blog = {
     id: null,
     content: '',
     entidadId: null,
     empresaId: 0,
+    title: '',
+    description: ''
   };
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   ngAfterViewInit() {
     this.editor.on('text-change', () => {
@@ -105,6 +109,11 @@ export class CompanyBlogsComponent implements OnInit {
         }
       }
     });
+
+    this.blogForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required]
+    });
   }
 
   sanitizeHtml(html: string): SafeHtml {
@@ -128,8 +137,18 @@ export class CompanyBlogsComponent implements OnInit {
   }
 
   createBlog2() {
+    this.blogForm.markAllAsTouched();
+
+    if (this.blogForm.invalid) {
+      // Si el formulario es inválido, muestra un mensaje de error o realiza alguna acción apropiada
+      return;
+    }
+
     const blogData = {
+      title: this.blogForm.value.title,
+      description: this.blogForm.value.description,
       content: this.blogContent,
+      empresaId: empresaId,
       // Otros datos del blog
     };
 

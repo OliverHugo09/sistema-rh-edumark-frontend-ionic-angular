@@ -3,4 +3,6 @@ export interface Blog {
     content: string;
     empresaId: number | null;
     entidadId: number | null;
+    title: string;
+    description: string;
 }

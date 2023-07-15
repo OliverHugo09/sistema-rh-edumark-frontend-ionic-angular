@@ -28,7 +28,29 @@
         </div>
 
         <h2>Crea un nuevo blog</h2>
+        <!-- Card content-->
+        <div>
+          <h5>Inserte el contenido del card</h5>
+          <form [formGroup]="blogForm">
+            <div class="form-outline mb-2">
+              <ion-input type="text" label="Titulo" label-placement="floating" fill="outline"
+                placeholder="Inserte el titulo que se verá en el card" formControlName="title"></ion-input>
+              <div *ngIf="blogForm.get('title').invalid && blogForm.get('title').touched">
+                <p class="text-danger small"><small>El título es requerido</small></p>
+              </div>
+            </div>
 
+            <div class="form-outline mb-2">
+              <ion-input type="text" label="Descripción" label-placement="floating" formControlName="description"
+                fill="outline" placeholder="Inserte la descripción que se verá en el card"></ion-input>
+              <div *ngIf="blogForm.get('description').invalid && blogForm.get('description').touched">
+                <p class="text-danger small"><small>La descripción es requerida</small></p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Blog creator-->
+        <h5>Contenido del Blog</h5>
         <div>
           <div class="ql-toolbar">
             <div id="editor"></div>
@@ -37,8 +59,9 @@
           <pre>{{ blogContent }}</pre>
           <div [innerHTML]="sanitizeHtml(blogContent)"></div>
         </div>
-        <button (click)="createBlog2()">Crear Blog</button>
-        <div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit" [disabled]="blogForm.invalid" (click)="createBlog2()">Crear
+            Blog</button>
         </div>
       </main>
     </div>
