@@ -17,10 +17,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AdminComponentsModule } from './admin/components/components.module';
 import { ClientComponentsModule } from './client/components/components.module';
+import { MobileComponentsModule } from './mobile/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AdminComponentsModule, ClientComponentsModule, HttpClientModule, HttpInterceptorModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AdminComponentsModule, ClientComponentsModule, MobileComponentsModule, HttpClientModule, HttpInterceptorModule,
     QuillModule.forRoot()],
   providers: [ModalController, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
