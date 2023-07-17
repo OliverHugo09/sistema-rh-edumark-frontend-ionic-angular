@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Blog } from '../../../../interface/blog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BlogCompanyService } from '../../../connection/api/blogs-company.service';
 
 import { AlertController } from '@ionic/angular';
 
@@ -40,7 +41,7 @@ export class CompanyBlogsComponent implements OnInit {
     description: ''
   };
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private sanitizer: DomSanitizer, private alertController: AlertController,) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private sanitizer: DomSanitizer, private alertController: AlertController, private blogService: BlogCompanyService) { }
 
   ngAfterViewInit() {
     this.editor.on('text-change', () => {
