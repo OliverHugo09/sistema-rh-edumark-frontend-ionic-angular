@@ -13,6 +13,8 @@ import { MobileCarouselComponent } from './mobile-carousel/mobile-carousel.compo
 import { MobileCardBlogComponent } from './mobile-card-blog/mobile-card-blog.component';
 import { MobileBlogContentComponent } from './mobile-blog-content/mobile-blog-content.component';
 import { MobileToolbarBackComponent } from './mobile-toolbar-back/mobile-toolbar-back.component';
+import { MobileEventsComponent } from './mobile-events/mobile-events.component';
+import { EventPopoverComponent } from './mobile-events/mobile-events.popover.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { MobileToolbarBackComponent } from './mobile-toolbar-back/mobile-toolbar
     MobileCarouselComponent,
     MobileCardBlogComponent,
     MobileBlogContentComponent,
-    MobileToolbarBackComponent
+    MobileToolbarBackComponent,
+    MobileEventsComponent,
+    EventPopoverComponent,
 
 
   ],
