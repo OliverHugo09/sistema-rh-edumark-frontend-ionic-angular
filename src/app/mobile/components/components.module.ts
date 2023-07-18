@@ -10,13 +10,19 @@ import { IonicModule } from '@ionic/angular';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { MobileToolbarComponent } from './mobile-toolbar/mobile-toolbar.component';
 import { MobileCarouselComponent } from './mobile-carousel/mobile-carousel.component';
+import { MobileCardBlogComponent } from './mobile-card-blog/mobile-card-blog.component';
+import { MobileBlogContentComponent } from './mobile-blog-content/mobile-blog-content.component';
+import { MobileToolbarBackComponent } from './mobile-toolbar-back/mobile-toolbar-back.component';
 
 
 @NgModule({
   declarations: [
     MobileMenuComponent,
     MobileToolbarComponent,
-    MobileCarouselComponent
+    MobileCarouselComponent,
+    MobileCardBlogComponent,
+    MobileBlogContentComponent,
+    MobileToolbarBackComponent
 
 
   ],
@@ -32,7 +38,9 @@ import { MobileCarouselComponent } from './mobile-carousel/mobile-carousel.compo
   exports: [
     MobileMenuComponent,
     MobileToolbarComponent,
-    MobileCarouselComponent
+    MobileCarouselComponent,
+    MobileCardBlogComponent,
+    MobileToolbarBackComponent
   ]
 })
 export class MobileComponentsModule { }

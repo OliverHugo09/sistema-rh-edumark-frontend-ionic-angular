@@ -5,10 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './mobile-toolbar.component.html',
   styleUrls: ['./mobile-toolbar.component.scss'],
 })
-export class MobileToolbarComponent  implements OnInit {
+export class MobileToolbarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

@@ -21,11 +21,11 @@ let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
 
 @Component({
-  selector: 'app-company-blogs',
-  templateUrl: './company-blogs.component.html',
-  styleUrls: ['./company-blogs.component.scss'],
+  selector: 'app-company-add-blog',
+  templateUrl: './company-add-blog.component.html',
+  styleUrls: ['./company-add-blog.component.scss'],
 })
-export class CompanyBlogsComponent implements OnInit {
+export class CompanyAddBlogComponent implements OnInit {
   blogContent: string;
   modules: any;
   editor: Quill;

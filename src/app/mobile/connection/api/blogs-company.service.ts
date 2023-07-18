@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Blog } from '../../../interface/blog';
 
-const API_URL = environment.API_URL + 'blog';
+const API_URL = environment.API_URL + 'blog/';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -35,6 +35,10 @@ export class BlogCompanyService {
 
     deleteBlog(id: number) {
         return this.http.delete(`${API_URL}${id}`, httpOptions);
+    }
+
+    getBlogByCompany(empresaId: number): Observable<Blog[]> {
+        return this.http.get<Blog[]>(`${API_URL}empresa/${empresaId}`, httpOptions);
     }
 
 }
