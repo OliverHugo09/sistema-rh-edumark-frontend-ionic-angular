@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { MobileBlogContentComponent } from '../components/mobile-blog-content/mobile-blog-content.component';
+
 import { RoutesPage } from './routes.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: RoutesPage
-  }
+  { path: '', component: RoutesPage },
+  { path: 'blog/:id', component: MobileBlogContentComponent },
 ];
 
 @NgModule({

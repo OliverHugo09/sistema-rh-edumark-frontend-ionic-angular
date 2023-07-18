@@ -14,10 +14,9 @@
           <h1 class="h2">Dashboard</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary" expand="block">Agregar
-                empleado</button>
-              <button type=" button" class="btn btn-sm btn-outline-secondary">Link de
-                invitación</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" expand="block"
+                [routerLink]="['','admin-panel','empresa-agregar-blog']">Agregar blog</button>
+              <button type=" button" class="btn btn-sm btn-outline-secondary">...</button>
             </div>
             <button type="button"
               class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
@@ -27,18 +26,33 @@
           </div>
         </div>
 
-        <h2>Crea un nuevo blog</h2>
+        <h2>Administra los blogs</h2>
+        <!-- content-->
 
-        <div>
-          <div class="ql-toolbar">
-            <div id="editor"></div>
-          </div>
-          <quill-editor id="editor2" [modules]="modules" [(ngModel)]="blogContent"></quill-editor>
-          <pre>{{ blogContent }}</pre>
-          <div [innerHTML]="sanitizeHtml(blogContent)"></div>
-        </div>
-        <button (click)="createBlog2()">Crear Blog</button>
-        <div>
+
+        <div class="table-responsive small">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let blog of blogs">
+                <td>{{blog.title}}</td>
+                <td>{{blog.description}}</td>
+                <td>
+                  <div class="btn-group me-2">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteBlog(blog.id)">
+                      <i class="bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </main>
     </div>

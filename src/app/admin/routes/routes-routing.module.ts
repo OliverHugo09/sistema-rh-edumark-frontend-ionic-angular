@@ -8,6 +8,7 @@ import { CompanyAddEmployeeComponent } from '../components/admin-company/company
 import { CompanyEditComponent } from '../components/admin-company/company-edit/company-edit.component';
 import { CompanyBlogsComponent } from '../components/admin-company/company-blogs/company-blogs.component';
 import { CompanyCalendarComponent } from '../components/admin-company/company-calendar/company-calendar.component';
+import { CompanyAddBlogComponent } from '../components/admin-company/company-add-blog/company-add-blog.component';
 
 const routes: Routes = [
   { path: '', component: RoutesPage },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'empresa-editar', component: CompanyEditComponent },
   { path: 'empresa-blogs', component: CompanyBlogsComponent },
   { path: 'empresa-calendario', component: CompanyCalendarComponent },
+  { path: 'empresa-agregar-blog', component: CompanyAddBlogComponent },
 
 ];
 

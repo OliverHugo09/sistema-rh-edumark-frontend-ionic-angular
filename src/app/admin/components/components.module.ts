@@ -23,6 +23,7 @@ import { CompanyAddEmployeeComponent } from './admin-company/company-add-employe
 import { CompanyEditComponent } from './admin-company/company-edit/company-edit.component';
 import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blogs.component';
 import { CompanyCalendarComponent } from './admin-company/company-calendar/company-calendar.component';
+import { CompanyAddBlogComponent } from './admin-company/company-add-blog/company-add-blog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,8 @@ import { CompanyCalendarComponent } from './admin-company/company-calendar/compa
     CompanyEditComponent,
     CompanyBlogsComponent,
     CompanyCalendarComponent,
+    CompanyAddBlogComponent
+
   ],
   imports: [
     CommonModule,

@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AdminComponentsModule } from './admin/components/components.module';
 import { ClientComponentsModule } from './client/components/components.module';
+import { MobileComponentsModule } from './mobile/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +32,8 @@ import { ClientComponentsModule } from './client/components/components.module';
     AdminComponentsModule,
     ClientComponentsModule,
     HttpClientModule,
-    HttpInterceptorModule, 
+    HttpInterceptorModule,
+    MobileComponentsModule,
     QuillModule.forRoot(),
   ],
   providers: [
