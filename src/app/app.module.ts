@@ -7,7 +7,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { QuillModule } from 'ngx-quill';
 
-import { IonicModule, IonicRouteStrategy, ModalController } from '@ionic/angular';
+import {
+  IonicModule,
+  IonicRouteStrategy,
+  ModalController,
+} from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,14 +25,22 @@ import { MobileComponentsModule } from './mobile/components/components.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AdminComponentsModule, ClientComponentsModule, MobileComponentsModule, HttpClientModule, HttpInterceptorModule,
-    QuillModule.forRoot()],
-  providers: [ModalController, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AdminComponentsModule,
+    ClientComponentsModule,
+    HttpClientModule,
+    HttpInterceptorModule,
+    MobileComponentsModule,
+    QuillModule.forRoot(),
+  ],
+  providers: [
+    ModalController,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+  exports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
-export class AppModule { }
+export class AppModule {}

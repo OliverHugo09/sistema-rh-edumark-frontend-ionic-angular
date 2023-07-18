@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { QuillModule } from 'ngx-quill';
 
@@ -40,7 +41,6 @@ import { CompanyAddBlogComponent } from './admin-company/company-add-blog/compan
     CompanyCalendarComponent,
     CompanyAddBlogComponent
 
-
   ],
   imports: [
     CommonModule,
@@ -50,13 +50,14 @@ import { CompanyAddBlogComponent } from './admin-company/company-add-blog/compan
     IonicModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
+    FullCalendarModule,
   ],
   exports: [
     NavbarComponent,
     SidebarComponent,
     DarkmodeComponent,
     MainComponent,
-    PanelComponent
-  ]
+    PanelComponent,
+  ],
 })
-export class AdminComponentsModule { }
+export class AdminComponentsModule {}
