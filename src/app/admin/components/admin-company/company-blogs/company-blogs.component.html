@@ -14,10 +14,9 @@
           <h1 class="h2">Dashboard</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-              <button type="button" class="btn btn-sm btn-outline-secondary" expand="block">Agregar
-                empleado</button>
-              <button type=" button" class="btn btn-sm btn-outline-secondary">Link de
-                invitación</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" expand="block"
+                [routerLink]="['','admin-panel','empresa-agregar-blog']">Agregar blog</button>
+              <button type=" button" class="btn btn-sm btn-outline-secondary">...</button>
             </div>
             <button type="button"
               class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
@@ -27,42 +26,33 @@
           </div>
         </div>
 
-        <h2>Crea un nuevo blog</h2>
-        <!-- Card content-->
-        <div>
-          <h5>Inserte el contenido del card</h5>
-          <form [formGroup]="blogForm">
-            <div class="form-outline mb-2">
-              <ion-input type="text" label="Titulo" label-placement="floating" fill="outline"
-                placeholder="Inserte el titulo que se verá en el card" formControlName="title"></ion-input>
-              <div *ngIf="blogForm.get('title').invalid && blogForm.get('title').touched">
-                <p class="text-danger small"><small>El título es requerido</small></p>
-              </div>
-            </div>
+        <h2>Administra los blogs</h2>
+        <!-- content-->
 
-            <div class="form-outline mb-2">
-              <ion-input type="text" label="Descripción" label-placement="floating" formControlName="description"
-                fill="outline" placeholder="Inserte la descripción que se verá en el card"></ion-input>
-              <div *ngIf="blogForm.get('description').invalid && blogForm.get('description').touched">
-                <p class="text-danger small"><small>La descripción es requerida</small></p>
-              </div>
-            </div>
-          </form>
-        </div>
-        <!-- Blog creator-->
-        <h5>Contenido del Blog</h5>
-        <div>
 
-          <div class="ql-toolbar">
-            <div id="editor"></div>
-          </div>
-          <quill-editor id="editor2" [modules]="modules" [(ngModel)]="blogContent"></quill-editor>
-          <pre>{{ blogContent }}</pre>
-          <div [innerHTML]="sanitizeHtml(blogContent)"></div>
-        </div>
-        <div class="d-grid gap-2">
-          <button class="btn btn-primary" type="submit" [disabled]="blogForm.invalid" (click)="createBlog()">Crear
-            Blog</button>
+        <div class="table-responsive small">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let blog of blogs">
+                <td>{{blog.title}}</td>
+                <td>{{blog.description}}</td>
+                <td>
+                  <div class="btn-group me-2">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteBlog(blog.id)">
+                      <i class="bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </main>
     </div>
