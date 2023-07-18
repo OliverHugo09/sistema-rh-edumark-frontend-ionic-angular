@@ -23,6 +23,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AlertController } from '@ionic/angular';
 
+let empresaIdNumerico = localStorage.getItem('empresaId');
+let empresaId = parseInt(empresaIdNumerico);
+
 @Component({
   selector: 'app-company-calendar',
   templateUrl: './company-calendar.component.html',
@@ -112,7 +115,8 @@ export class CompanyCalendarComponent implements OnInit {
       title: this.eventForm.value.title,
       start: this.selectInfo.startStr,
       end: this.selectInfo.endStr,
-      description: this.eventForm.value.description,
+      description: this.eventForm.value.description ,
+      empresaId: empresaId,
     };
 
     calendarApi.addEvent(data);
@@ -153,10 +157,9 @@ export class CompanyCalendarComponent implements OnInit {
 
   getEvents() {
     this.httpClient
-      .get(`${environment.API_URL}calendar`)
+      .get(`${environment.API_URL}calendar/empresa/` + empresaId)
       .subscribe((data: any) => {
-        const backendEvents = data; // Suponiendo que la respuesta del backend es un array de eventos
-
+        const backendEvents = data; // Suponiendo que la respuesta del backend es un array de   eventos
         const calendarEvents: EventInput[] = backendEvents.map(
           (event: any) => ({
             id: event.id,
