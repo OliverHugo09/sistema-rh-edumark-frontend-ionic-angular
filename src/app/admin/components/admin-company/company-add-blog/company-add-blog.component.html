@@ -55,7 +55,7 @@
             <div id="editor"></div>
           </div>
           <quill-editor id="editor2" [modules]="modules" [(ngModel)]="blogContent"></quill-editor>
-          <pre>{{ blogContent }}</pre>
+          <!-- <pre>{{ blogContent }}</pre> -->
           <div [innerHTML]="sanitizeHtml(blogContent)"></div>
         </div>
         <div class="d-grid gap-2">

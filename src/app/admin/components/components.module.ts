@@ -24,6 +24,7 @@ import { CompanyEditComponent } from './admin-company/company-edit/company-edit.
 import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blogs.component';
 import { CompanyCalendarComponent } from './admin-company/company-calendar/company-calendar.component';
 import { CompanyAddBlogComponent } from './admin-company/company-add-blog/company-add-blog.component';
+import { CompanyAddUserComponent } from './admin-company/company-add-user/company-add-user.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CompanyAddBlogComponent } from './admin-company/company-add-blog/compan
     CompanyEditComponent,
     CompanyBlogsComponent,
     CompanyCalendarComponent,
-    CompanyAddBlogComponent
+    CompanyAddBlogComponent,
+    CompanyAddUserComponent
 
   ],
   imports: [
@@ -60,4 +62,4 @@ import { CompanyAddBlogComponent } from './admin-company/company-add-blog/compan
     PanelComponent,
   ],
 })
-export class AdminComponentsModule {}
+export class AdminComponentsModule { }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { LoginCompanyService } from '../../../connection/secure/login-company.service';
+import { LoginCompanyUserService } from '../../../connection/secure/login-company-user.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginCompanyComponent implements OnInit {
 
   constructor(
     private loginService: LoginCompanyService,
+    private loginUserService: LoginCompanyUserService,
     private alertController: AlertController
   ) { }
 
@@ -36,16 +38,25 @@ export class LoginCompanyComponent implements OnInit {
     this.loginService.login(this.correo, this.password)
       .then(success => {
         if (success) {
+          // El login de la empresa fue exitoso
         } else {
-          // Manejo de errores al loguearse
-          const alert = this.alertController.create({
-            header: 'Error❌',
-            subHeader: '¡Algo salió mal!',
-            message: 'Correo o contraseña inválidos, vuelve a intentar',
-            buttons: ['OK'],
-          }).then((alert) => {
-            alert.present(); // Mostrar el alert
-          });
+          // Intentar el login de usuario
+          this.loginUserService.login(this.correo, this.password)
+            .then(userSuccess => {
+              if (userSuccess) {
+                // El login de usuario fue exitoso
+              } else {
+                // Ambos logins fallaron, mostrar mensaje de error
+                const alert = this.alertController.create({
+                  header: 'Error❌',
+                  subHeader: '¡Algo salió mal!',
+                  message: 'Correo o contraseña inválidos, vuelve a intentar',
+                  buttons: ['OK'],
+                }).then((alert) => {
+                  alert.present(); // Mostrar el alert
+                });
+              }
+            });
         }
       });
   }

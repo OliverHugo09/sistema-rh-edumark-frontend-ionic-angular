@@ -20,11 +20,6 @@
               <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copyUrl()">Link de
                 invitación</button>
             </div>
-            <button type="button"
-              class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
-              <i class="bi-calendar3"></i>
-              This week
-            </button>
           </div>
         </div>
 
@@ -49,9 +44,6 @@
                 <td>{{ employee.correo }}</td>
                 <td>{{ employee.telefono }}</td>
                 <td>
-                  <button type="button" class="btn btn-secondary btn-sm me-1">
-                    <i class="bi-person-vcard"></i>
-                  </button>
                   <button type="button" class="btn btn-warning btn-sm me-1">
                     <i class="bi-pencil"></i>
                   </button>
@@ -73,7 +65,7 @@
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Modal</ion-title>
+          <ion-title>Nuevo empleado</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </ion-buttons>

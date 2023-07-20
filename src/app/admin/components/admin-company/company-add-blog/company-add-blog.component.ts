@@ -86,7 +86,6 @@ export class CompanyAddBlogComponent implements OnInit {
                   reject('Error al cargar la imagen');
                 }
               }, (error) => {
-                console.error('Error al cargar la imagen', error);
                 reject('Error al cargar la imagen');
               });
           });
@@ -150,7 +149,9 @@ export class CompanyAddBlogComponent implements OnInit {
           }).then((alert) => {
             alert.present();
           });
-          console.log('Blog creado exitosamente');
+          this.blogForm.reset();
+          this.editor.setText('');
+          this.blogContent = '';
         },
         (error) => {
           const alert = this.alertController.create({
@@ -161,7 +162,6 @@ export class CompanyAddBlogComponent implements OnInit {
           }).then((alert) => {
             alert.present();
           });
-          console.error('Error al crear el blog', error);
         }
       );
   }

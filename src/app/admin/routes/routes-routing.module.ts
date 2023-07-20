@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProtectRoutesGuard } from '../../connection/secure/protect-routes.guard';
 import { RoutesPage } from './routes.page';
 
 import { PanelComponent } from '../components/admin-company/panel/panel.component';
@@ -9,6 +8,7 @@ import { CompanyEditComponent } from '../components/admin-company/company-edit/c
 import { CompanyBlogsComponent } from '../components/admin-company/company-blogs/company-blogs.component';
 import { CompanyCalendarComponent } from '../components/admin-company/company-calendar/company-calendar.component';
 import { CompanyAddBlogComponent } from '../components/admin-company/company-add-blog/company-add-blog.component';
+import { CompanyAddUserComponent } from '../components/admin-company/company-add-user/company-add-user.component';
 
 const routes: Routes = [
   { path: '', component: RoutesPage },
@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'empresa-blogs', component: CompanyBlogsComponent },
   { path: 'empresa-calendario', component: CompanyCalendarComponent },
   { path: 'empresa-agregar-blog', component: CompanyAddBlogComponent },
+  { path: 'empresa-agregar-usuario', component: CompanyAddUserComponent },
 
 ];
 
