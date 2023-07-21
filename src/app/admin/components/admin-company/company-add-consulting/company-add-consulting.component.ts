@@ -7,9 +7,8 @@ import { AlertController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { environment } from '../../../../../environments/environment';
 
-import { User } from '../../../../interface/user';
-
-import { UserCompanyService } from '../../../../admin/connection/api/user-company.service';
+import { Consulting } from '../../../../interface/consulting';
+import { ConsultingCompanyService } from '../../../../admin/connection/api/consulting-company.service';
 
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
@@ -17,20 +16,21 @@ let empresaId = parseInt(empresaIdNumerico);
 let entidadIdNumerico = localStorage.getItem('entidadId');
 let entidadId = parseInt(entidadIdNumerico);
 
-let API_URL = environment.API_URL;
+let usuarioIdNumerico = localStorage.getItem('usuarioId');
+let usuarioId = parseInt(usuarioIdNumerico);
 
 @Component({
-  selector: 'app-company-add-user',
-  templateUrl: './company-add-user.component.html',
-  styleUrls: ['./company-add-user.component.scss'],
+  selector: 'app-company-add-consulting',
+  templateUrl: './company-add-consulting.component.html',
+  styleUrls: ['./company-add-consulting.component.scss'],
 })
-export class CompanyAddUserComponent implements OnInit {
+export class CompanyAddConsultingComponent implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
   @ViewChild('addUserModal') addUserModal: IonModal; // Agrega este ViewChild
   userForm: FormGroup;
   isAddModalOpen = false;
   isUpdateModalOpen = false;
-  selectedUser: User;
+  selectedUser: Consulting;
 
   async ngAfterViewInit() {
     const modal = await this.modalController.getTop(); // Obtén el modal actual
@@ -54,37 +54,41 @@ export class CompanyAddUserComponent implements OnInit {
       this.userForm.reset();
     }
   }
-  openUpdateModal(user: User) {
-    this.selectedUser = user;
+
+  openUpdateModal(consulting: Consulting) {
+    this.selectedUser = consulting;
     this.userForm.patchValue({
-      nombre: user.nombre,
-      correo: user.correo,
-      password: user.password
+      title: consulting.title,
+      description: consulting.description,
+      time: consulting.time
     });
     this.isUpdateModalOpen = true;
   }
-
 
   closeUpdateModal() {
     this.isUpdateModalOpen = false; // Cierra el modal de actualización
     this.setOpen(false, true); // Restablece el formulario del modal de agregar usuario
   }
 
-  user: User = {
+  consulting: Consulting = {
     id: null,
-    nombre: '',
-    correo: '',
-    password: '',
+    title: '',
+    description: '',
+    time: '',
+    comment: '',
+    status: null,
     empresaId: null,
     entidadId: null,
+    usuarioId: null,
+    empleadoId: null,
   }
 
   private subscriptions: Array<Subscription> = [];
-  users: User[];
+  consultings: Consulting[];
 
   constructor(
     public modalController: ModalController,
-    private service: UserCompanyService,
+    private service: ConsultingCompanyService,
     private router: Router,
     private alertController: AlertController
   ) { }
@@ -92,65 +96,32 @@ export class CompanyAddUserComponent implements OnInit {
   ngOnInit() {
 
     this.userForm = new FormGroup({
-      nombre: new FormControl(null, Validators.required),
-      correo: new FormControl(null, [
-        Validators.required,
-        Validators.email,
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
+      title: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      time: new FormControl(null, Validators.required),
     });
 
     // Asigna los valores del usuario seleccionado al formulario de actualización
     this.userForm.patchValue(this.selectedUser);
 
-    const newUsers = this.service.getUsers(empresaId).subscribe(
+    const newUsers = this.service.getConsultings(empresaId).subscribe(
       next => {
-        this.users = next;
+        this.consultings = next;
       }
     );
 
     this.subscriptions.push(newUsers);
   }
 
-  copyUrl() {
-    const currentUrl = window.location.href;
-    const baseUrl = currentUrl.replace(/\/admin-panel.*/, '');
-    const url = `${baseUrl}/registrar-empleado/${empresaId}`;
-    navigator.clipboard.writeText(url).then(() => {
-      // Acciones adicionales después de copiar la URL al portapapeles
-      const alert = this.alertController.create({
-        header: 'URL Copiada ✔️',
-        subHeader: '¡Todo salió bien!',
-        message: 'El link de invitación se ha copiado al portapapeles correctamente.',
-        buttons: ['OK'],
-      }).then((alert) => {
-        alert.present(); // Mostrar el alert
-      });
-    }).catch((error) => {
-      // Manejo de errores al copiar la URL
-      const alert = this.alertController.create({
-        header: 'Error❌',
-        subHeader: '¡Algo salió mal!',
-        message: 'No se ha podido copiar el link de invitación',
-        buttons: ['OK'],
-      }).then((alert) => {
-        alert.present(); // Mostrar el alert
-      });
-    });
-  }
-
   refreshEmployees(): void {
-    this.service.getUsers(empresaId).subscribe(
+    this.service.getConsultings(empresaId).subscribe(
       (employees) => {
-        this.users = employees;
+        this.consultings = employees;
       }
     );
   }
 
-  addEmployee(): void {
+  addConsulting(): void {
     if (this.userForm.invalid) {
       // Verificar si el formulario es inválido y mostrar mensajes de validación si es necesario
       this.userForm.markAllAsTouched();
@@ -160,9 +131,10 @@ export class CompanyAddUserComponent implements OnInit {
     const employeeData = {
       ...this.userForm.value,
       empresaId: empresaId, // Agregar el valor de empresaId desde localStorage
+      usuarioId: usuarioId, // Agregar el valor de usuarioId desde localStorage
     };
 
-    this.service.addUser(employeeData).subscribe(
+    this.service.addConsulting(employeeData).subscribe(
       () => {
         // Operaciones adicionales después de agregar la empresa
         const alert = this.alertController.create({
@@ -193,14 +165,85 @@ export class CompanyAddUserComponent implements OnInit {
     );
   }
 
-  openModal(user: User): void {
-    this.selectedUser = { ...user }; // Hacer una copia del objeto user para evitar modificarlo directamente
+  async deleteConsulting(ConsultingId: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar blog',
+      message: '¿Estás seguro de que quieres eliminar este blog?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Eliminar',
+          cssClass: 'danger',
+          handler: () => {
+            this.service.deleteConsulting(ConsultingId).subscribe(
+              () => {
+                // Eliminación exitosa, aquí puedes mostrar una notificación de éxito
+                this.showSuccessAlert('Blog eliminado exitosamente');
+                // Vuelve a cargar la lista de blogs después de eliminar uno
+                this.loadBlogs();
+              },
+              (error) => {
+                console.error('Error al eliminar el blog', error);
+                // Aquí puedes mostrar una notificación de error si lo deseas
+                this.showErrorAlert('Error al eliminar el blog');
+              }
+            );
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async showSuccessAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message: message,
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
+  }
+
+  async showErrorAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: message,
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
+  }
+
+  async loadBlogs() {
+    // Obtén el empresaId del localStorage y conviértelo a número
+    const empresaIdNumerico = localStorage.getItem('empresaId');
+    const empresaId = parseInt(empresaIdNumerico);
+
+    // Llama al servicio para obtener la lista de blogs
+    this.service.getConsultings(empresaId).subscribe(
+      (blogs) => {
+        this.consultings = blogs;
+      },
+      (error) => {
+        console.error('Error al obtener la lista de blogs', error);
+      }
+    );
+  }
+
+  openModal(consulting: Consulting): void {
+    this.selectedUser = { ...consulting }; // Hacer una copia del objeto user para evitar modificarlo directamente
 
     // Establecer los valores del usuario seleccionado en el formulario de actualización
     this.userForm.patchValue({
-      nombre: this.selectedUser.nombre,
-      correo: this.selectedUser.correo,
-      password: this.selectedUser.password
+      title: this.selectedUser.title,
+      description: this.selectedUser.description,
+      time: this.selectedUser.time
     });
   }
 
@@ -212,12 +255,12 @@ export class CompanyAddUserComponent implements OnInit {
       return;
     }
 
-    const updatedEmployee: User = {
+    const updatedEmployee: Consulting = {
       ...this.selectedUser, // Mantener los campos existentes del usuario
       ...this.userForm.value // Actualizar los campos modificados en el formulario
     };
 
-    this.service.updateUser(updatedEmployee.id, updatedEmployee).subscribe(
+    this.service.updateConsulting(updatedEmployee.id, updatedEmployee).subscribe(
       () => {
         // Operaciones adicionales después de actualizar el usuario
         const alert = this.alertController.create({

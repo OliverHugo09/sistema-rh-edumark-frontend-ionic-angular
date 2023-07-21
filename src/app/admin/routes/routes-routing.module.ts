@@ -9,6 +9,7 @@ import { CompanyBlogsComponent } from '../components/admin-company/company-blogs
 import { CompanyCalendarComponent } from '../components/admin-company/company-calendar/company-calendar.component';
 import { CompanyAddBlogComponent } from '../components/admin-company/company-add-blog/company-add-blog.component';
 import { CompanyAddUserComponent } from '../components/admin-company/company-add-user/company-add-user.component';
+import { CompanyAddConsultingComponent } from '../components/admin-company/company-add-consulting/company-add-consulting.component';
 
 const routes: Routes = [
   { path: '', component: RoutesPage },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'empresa-calendario', component: CompanyCalendarComponent },
   { path: 'empresa-agregar-blog', component: CompanyAddBlogComponent },
   { path: 'empresa-agregar-usuario', component: CompanyAddUserComponent },
+  { path: 'empresa-asesoria', component: CompanyAddConsultingComponent },
 
 ];
 

@@ -1,0 +1,56 @@
+<app-mobile-menu></app-mobile-menu>
+<div class="ion-page" id="main-content">
+  <app-mobile-toolbar-back></app-mobile-toolbar-back>
+  <!-- Principal page-->
+  <ion-content [fullscreen]="true">
+
+    <div class="ion-padding">
+      <!-- Asesorias confirmadas-->
+      <h1>Asesorias asignadas</h1>
+      <h3 class="text-danger "><strong>!No olvides asistir¡</strong></h3>
+      <ion-card [routerLink]="['','empleado','blog']">
+        <ion-card-header>
+          <ion-card-title>Asesoria Financiera</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Hola, hemos agendado su cita para el día Viernes 28 de Julio, porfavor asista a la oficiona de recursos
+          humanos a las 10 AM, favor de confirmar asistencia <br><br>
+          <span class="text-success"><strong>Estado: Asistencia confirmada</strong> </span><br><br>
+
+        </ion-card-content>
+      </ion-card>
+      <!-- Confirmación de asistencia-->
+      <h2>Asesorias pendientes de confirmación</h2>
+      <ion-card [routerLink]="['','empleado','blog']">
+        <ion-card-header>
+          <ion-card-title>Asesoria Financiera</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Hola, hemos agendado su cita para el día Viernes 28 de Julio, porfavor asista a la oficiona de recursos
+          humanos a las 10 AM, favor de confirmar asistencia <br><br>
+          <span class="text-warning text-opacity-75"><strong>Estado: Pendiente de confirmar asistencia</strong></span>
+          <br><br>
+          <ion-button expand="block" color="success">Confirmar asistencia</ion-button>
+
+        </ion-card-content>
+      </ion-card>
+      <!-- Solicitar una asesoria-->
+      <h1>Solicita una asesoria</h1>
+      <ion-text color="warning"><ion-icon name="warning"></ion-icon></ion-text>
+      !Aviso¡ Haz clic para agendar una cita, en caso de asesoría virtual recuerda tener instaladas las aplicaciones
+      que usa tu empresa
+      <span class="text-warning bg-dark"></span>
+      <ion-card [routerLink]="['','empleado','blog']" fill="outline">
+        <ion-card-header>
+          <ion-card-title>Asesoria Financiera</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Agenda una cita de manera presencial o virtual para saber sobre tus estados de cuenta<br><br>
+          En el horario de 9:00 AM a 5 PM <br><br>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+
+  </ion-content>
+</div>

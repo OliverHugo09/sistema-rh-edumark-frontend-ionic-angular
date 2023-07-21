@@ -25,6 +25,7 @@ import { CompanyBlogsComponent } from './admin-company/company-blogs/company-blo
 import { CompanyCalendarComponent } from './admin-company/company-calendar/company-calendar.component';
 import { CompanyAddBlogComponent } from './admin-company/company-add-blog/company-add-blog.component';
 import { CompanyAddUserComponent } from './admin-company/company-add-user/company-add-user.component';
+import { CompanyAddConsultingComponent } from './admin-company/company-add-consulting/company-add-consulting.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CompanyAddUserComponent } from './admin-company/company-add-user/compan
     CompanyBlogsComponent,
     CompanyCalendarComponent,
     CompanyAddBlogComponent,
-    CompanyAddUserComponent
+    CompanyAddUserComponent,
+    CompanyAddConsultingComponent
 
   ],
   imports: [
