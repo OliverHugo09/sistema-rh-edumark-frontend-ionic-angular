@@ -52,6 +52,7 @@
             </tbody>
           </table>
         </div>
+        <!-- Asesorias solicitadas -->
         <h2>Asesorias solicitadas</h2>
         <div class="table-responsive small">
           <table class="table table-sm table-hover">
@@ -74,10 +75,70 @@
                   <td>
                     <button type="button" class="btn btn-warning btn-sm me-1"
                       (click)="openUpdateStatusModal(consulting)">
-                      <i class="bi-pencil"></i>
+                      <i class="bi-pencil"> Agendar</i>
                     </button>
-                    <button type="button" class="btn btn-danger btn-sm">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteConsulting(consulting.id)">
                       <i class="bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <!-- Asesorias por confirmar asistencia -->
+        <h2>Asesorias por confirmar asistencia</h2>
+        <div class="table-responsive small">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">ID</th>
+                <th scope="col">Tipo de asesoria</th>
+                <th scope="col">Datos de la reunión</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let consulting of consultings">
+              <ng-container *ngIf="consulting.status === 2 && consulting.usuarioId === usuarioId">
+                <tr>
+                  <td>{{ consulting.id }}</td>
+                  <td>{{ consulting.title }}</td>
+                  <td>{{ consulting.comment }}</td>
+                  <td class="text-warning"><strong>Pendiente de confirmar asistencia</strong></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteConsulting(consulting.id)">
+                      <i class="bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <!-- Asesorias agendadas -->
+        <h2>Asesorias agendadas</h2>
+        <div class="table-responsive small">
+          <table class="table table-sm table-hover">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">ID</th>
+                <th scope="col">Tipo de asesoria</th>
+                <th scope="col">Datos de la reunión</th>
+                <th scope="col">Estado</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let consulting of consultings">
+              <ng-container *ngIf="consulting.status === 3 && consulting.usuarioId === usuarioId">
+                <tr>
+                  <td>{{ consulting.id }}</td>
+                  <td>{{ consulting.title }}</td>
+                  <td>{{ consulting.comment }}</td>
+                  <td class="text-success"><strong>Asistencia confirmada</strong></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteConsulting(consulting.id)">
+                      <i class="bi-trash"> Finalizar</i>
                     </button>
                   </td>
                 </tr>
@@ -215,7 +276,6 @@
             <ion-select formControlName="status" placeholder="Selecciona un estado">
               <ion-select-option value="1">Pendiente</ion-select-option>
               <ion-select-option value="2">Pendiente de confirmar asistencia</ion-select-option>
-              <ion-select-option value="4">Finalizado</ion-select-option>
             </ion-select>
             <div *ngIf="!selectedUser.status">
               <p class="text-danger small"><small>El estado es requerido</small></p>

@@ -5,14 +5,8 @@ import { Consulting } from '../../../interface/consulting';
 import { Subscription } from 'rxjs';
 import { AgregarAsesoriaModalComponent } from './mobile-meets-modal.component';
 
-let empresaIdNumerico = localStorage.getItem('empresaId');
-let empresaId = parseInt(empresaIdNumerico);
-
 let entidadIdNumerico = localStorage.getItem('entidadId');
 let entidadId = parseInt(entidadIdNumerico);
-
-let usuarioIdNumerico = localStorage.getItem('usuarioId');
-let usuarioId = parseInt(usuarioIdNumerico);
 
 
 
@@ -22,7 +16,8 @@ let usuarioId = parseInt(usuarioIdNumerico);
   styleUrls: ['./mobile-meets.component.scss'],
 })
 export class MobileMeetsComponent implements OnInit {
-
+  usuarioId: number;
+  empresaId: number;
   empleadoId: number;
 
   constructor(
@@ -34,6 +29,13 @@ export class MobileMeetsComponent implements OnInit {
     // Obtener el valor del localStorage y convertirlo a número (si es necesario)
     const empleadoIdString = localStorage.getItem('empleadoId');
     this.empleadoId = Number(empleadoIdString);
+
+    // Obtener el valor del localStorage y convertirlo a número (si es necesario)
+    const usuarioIdString = localStorage.getItem('usuarioId');
+    this.usuarioId = Number(usuarioIdString);
+
+    const empresaIdString = localStorage.getItem('empresaId');
+    this.empresaId = Number(empresaIdString);
   }
 
   consulting: Consulting = {
@@ -54,14 +56,47 @@ export class MobileMeetsComponent implements OnInit {
 
   ngOnInit() {
 
-    const newUsers = this.service.getConsultings(empresaId).subscribe(
-      next => {
-        this.consultings = next;
-        console.log(this.consultings)
+    this.service.getConsultings(this.empresaId).subscribe(
+      (consultings) => {
+        this.consultings = consultings;
+      },
+      (error) => {
+        // Manejar el error si es necesario
+        console.error('Error al obtener las asesorías', error);
       }
     );
 
-    this.subscriptions.push(newUsers);
+  }
+
+  // Función para verificar si existen asesorías pendientes (con estado 2)
+  hayAsesoriasPendientes(): boolean {
+    return this.consultings.some(c => c.status === 2 && c.empleadoId === this.empleadoId);
+  }
+
+  // Nueva función para actualizar el estado de la asesoría
+  async confirmarAsistencia(consultingId: number) {
+    try {
+      // Obtén la asesoría específica por su ID
+      const consulting = this.consultings.find(c => c.id === consultingId);
+
+      // Verifica si se encontró la asesoría
+      if (!consulting) {
+        throw new Error('Asesoría no encontrada.');
+      }
+
+      // Actualiza el estado de la asesoría a "Asistencia confirmada" (3)
+      consulting.status = 3;
+
+      // Llama al servicio para actualizar la asesoría en el servidor
+      await this.service.updateConsulting(consulting.id, consulting).toPromise();
+
+      // Muestra una notificación de éxito
+      this.showAlert('¡Asistencia confirmada!', 'La asistencia ha sido confirmada correctamente. ✔️');
+    } catch (error) {
+      // Muestra una notificación de error
+      this.showAlert('Error', 'Ha ocurrido un error al confirmar la asistencia. Por favor, intenta nuevamente. ❌');
+      console.error('Error al confirmar la asistencia', error);
+    }
   }
 
   // Función para solicitar una asesoria
@@ -93,7 +128,7 @@ export class MobileMeetsComponent implements OnInit {
         time: '', // Puedes dejar el horario vacío o asignarle algún valor por defecto
         comment: data.comment,
         status: 1, // Asigna el estado "Pendiente" (1 en tu caso)
-        empresaId: null,
+        empresaId: this.empresaId,
         entidadId: null,
         usuarioId,
         empleadoId,
