@@ -16,6 +16,7 @@ import { MobileToolbarBackComponent } from './mobile-toolbar-back/mobile-toolbar
 import { MobileEventsComponent } from './mobile-events/mobile-events.component';
 import { EventPopoverComponent } from './mobile-events/mobile-events.popover.component';
 import { MobileMeetsComponent } from './mobile-meets/mobile-meets.component';
+import { AgregarAsesoriaModalComponent } from './mobile-meets/mobile-meets-modal.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MobileMeetsComponent } from './mobile-meets/mobile-meets.component';
     MobileToolbarBackComponent,
     MobileEventsComponent,
     EventPopoverComponent,
-    MobileMeetsComponent
+    MobileMeetsComponent,
+    AgregarAsesoriaModalComponent
 
 
   ],

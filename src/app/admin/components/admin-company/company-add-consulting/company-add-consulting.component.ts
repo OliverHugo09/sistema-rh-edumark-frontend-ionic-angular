@@ -16,21 +16,23 @@ let empresaId = parseInt(empresaIdNumerico);
 let entidadIdNumerico = localStorage.getItem('entidadId');
 let entidadId = parseInt(entidadIdNumerico);
 
-let usuarioIdNumerico = localStorage.getItem('usuarioId');
-let usuarioId = parseInt(usuarioIdNumerico);
-
 @Component({
   selector: 'app-company-add-consulting',
   templateUrl: './company-add-consulting.component.html',
   styleUrls: ['./company-add-consulting.component.scss'],
 })
 export class CompanyAddConsultingComponent implements OnInit {
+  usuarioId: number;
+  empresaId: number;
   @ViewChild(IonModal) modal: IonModal;
   @ViewChild('addUserModal') addUserModal: IonModal; // Agrega este ViewChild
   userForm: FormGroup;
+  statusForm: FormGroup;
   isAddModalOpen = false;
   isUpdateModalOpen = false;
+  isUpdateStatusModalOpen = false;
   selectedUser: Consulting;
+  selectedConsultingId: number;
 
   async ngAfterViewInit() {
     const modal = await this.modalController.getTop(); // Obtén el modal actual
@@ -48,6 +50,7 @@ export class CompanyAddConsultingComponent implements OnInit {
     this.userForm.reset();
     this.isAddModalOpen = isAddModal ? isOpen : false;
     this.isUpdateModalOpen = !isAddModal ? isOpen : false;
+    this.isUpdateStatusModalOpen = !isAddModal ? isOpen : false;
 
     if (!isOpen && !isAddModal) {
       // Si el modal de edición se está cerrando, restablecer el formulario del modal de edición
@@ -63,6 +66,19 @@ export class CompanyAddConsultingComponent implements OnInit {
       time: consulting.time
     });
     this.isUpdateModalOpen = true;
+  }
+
+  // Método para abrir el modal de actualización de estado
+  openUpdateStatusModal(consulting: Consulting) {
+    this.selectedConsultingId = consulting.id; // Guardar el ID de la asesoría seleccionada
+    this.statusForm.patchValue({
+    });
+    this.isUpdateStatusModalOpen = true;
+  }
+
+  // Método para cerrar el modal de actualización de estado
+  closeUpdateStatusModal() {
+    this.isUpdateStatusModalOpen = false;
   }
 
   closeUpdateModal() {
@@ -91,7 +107,14 @@ export class CompanyAddConsultingComponent implements OnInit {
     private service: ConsultingCompanyService,
     private router: Router,
     private alertController: AlertController
-  ) { }
+  ) {
+    // Obtener el valor del localStorage y convertirlo a número (si es necesario)
+    const usuarioIdString = localStorage.getItem('usuarioId');
+    this.usuarioId = Number(usuarioIdString);
+
+    const empresaIdString = localStorage.getItem('empresaId');
+    this.empresaId = Number(empresaIdString);
+  }
 
   ngOnInit() {
 
@@ -99,6 +122,13 @@ export class CompanyAddConsultingComponent implements OnInit {
       title: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       time: new FormControl(null, Validators.required),
+      comment: new FormControl(null),
+      status: new FormControl(null),
+    });
+
+    this.statusForm = new FormGroup({
+      comment: new FormControl(null, Validators.required),
+      status: new FormControl(null, Validators.required),
     });
 
     // Asigna los valores del usuario seleccionado al formulario de actualización
@@ -107,6 +137,7 @@ export class CompanyAddConsultingComponent implements OnInit {
     const newUsers = this.service.getConsultings(empresaId).subscribe(
       next => {
         this.consultings = next;
+        console.log(this.consultings)
       }
     );
 
@@ -131,7 +162,7 @@ export class CompanyAddConsultingComponent implements OnInit {
     const employeeData = {
       ...this.userForm.value,
       empresaId: empresaId, // Agregar el valor de empresaId desde localStorage
-      usuarioId: usuarioId, // Agregar el valor de usuarioId desde localStorage
+      usuarioId: this.usuarioId, // Agregar el valor de usuarioId desde localStorage
     };
 
     this.service.addConsulting(employeeData).subscribe(
@@ -243,7 +274,8 @@ export class CompanyAddConsultingComponent implements OnInit {
     this.userForm.patchValue({
       title: this.selectedUser.title,
       description: this.selectedUser.description,
-      time: this.selectedUser.time
+      time: this.selectedUser.time,
+
     });
   }
 
@@ -286,6 +318,51 @@ export class CompanyAddConsultingComponent implements OnInit {
           buttons: ['OK'],
         }).then((alert) => {
           alert.present(); // Mostrar el alert
+        });
+      }
+    );
+  }
+
+  // Método para actualizar el estado de la asesoría
+  updateStatus(): void {
+    if (this.statusForm.invalid) {
+      this.statusForm.markAllAsTouched();
+      return;
+    }
+
+    const updatedStatus = this.statusForm.value;
+
+    // Obtener la asesoría seleccionada para actualizar el estado
+    const selectedConsulting = this.consultings.find((consulting) => consulting.id === this.selectedConsultingId);
+
+    // Combinar los valores actualizados del formulario con la asesoría seleccionada
+    const updatedConsulting: Consulting = {
+      ...selectedConsulting,
+      ...updatedStatus,
+    };
+
+    this.service.updateConsulting(this.selectedConsultingId, updatedConsulting).subscribe(
+      () => {
+        const alert = this.alertController.create({
+          header: 'Éxito ✔️',
+          subHeader: '¡Todo salió bien!',
+          message: 'Estado actualizado exitosamente',
+          buttons: ['OK'],
+        }).then((alert) => {
+          alert.present();
+        });
+
+        this.closeUpdateStatusModal();
+        this.refreshEmployees(); // Actualizar la lista de empleados
+      },
+      (error) => {
+        const alert = this.alertController.create({
+          header: 'Error ❌',
+          subHeader: '¡Algo salió mal!',
+          message: 'No se pudo actualizar el estado',
+          buttons: ['OK'],
+        }).then((alert) => {
+          alert.present();
         });
       }
     );

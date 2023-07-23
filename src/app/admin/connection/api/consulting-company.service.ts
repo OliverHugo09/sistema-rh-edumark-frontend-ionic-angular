@@ -35,7 +35,7 @@ export class ConsultingCompanyService {
     }
 
     deleteConsulting(id: number) {
-        return this.http.delete(`${API_URL}${id}`, httpOptions);
+        return this.http.delete(`${API_URL_Consulting}${id}`, httpOptions);
     }
 
 }
