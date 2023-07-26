@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,10 @@ import { RegisterCompanyComponent } from './register/register-company/register-c
 import { LoginEmployeeComponent } from './login/login-employee/login-employee.component';
 import { LoginEntityComponent } from './login/login-entity/login-entity.component';
 import { LoginCompanyComponent } from './login/login-company/login-company.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 import { SelectLoginComponent } from './login/select-login/select-login.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { SelectLoginComponent } from './login/select-login/select-login.componen
     LoginEmployeeComponent,
     LoginEntityComponent,
     LoginCompanyComponent,
-    SelectLoginComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    SelectLoginComponent,
   ],
   imports: [
     CommonModule,
@@ -33,13 +37,7 @@ import { SelectLoginComponent } from './login/select-login/select-login.componen
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-
-
   ],
-  exports: [
-    LoginEmployeeComponent,
-    LoginEntityComponent
-
-  ]
+  exports: [LoginEmployeeComponent, LoginEntityComponent],
 })
-export class ClientComponentsModule { }
+export class ClientComponentsModule {}
