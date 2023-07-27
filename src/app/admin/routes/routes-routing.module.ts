@@ -12,6 +12,7 @@ import { CompanyAddUserComponent } from '../components/admin-company/company-add
 import { CompanyAddConsultingComponent } from '../components/admin-company/company-add-consulting/company-add-consulting.component';
 
 import { AddUserComponent } from '../components/admin-panel/add-user/add-user.component';
+import { AddCalendarComponent } from '../components/admin-panel/add-calendar/add-calendar.component';
 
 const routes: Routes = [
   { path: '', component: RoutesPage },
@@ -23,13 +24,12 @@ const routes: Routes = [
   { path: 'empresa-agregar-blog', component: CompanyAddBlogComponent },
   { path: 'empresa-agregar-usuario', component: CompanyAddUserComponent },
   { path: 'empresa-asesoria', component: CompanyAddConsultingComponent },
-
   { path: 'agregar-usuario', component: AddUserComponent },
-
+  { path: 'entidad-calendar', component: AddCalendarComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RoutesPageRoutingModule { }
+export class RoutesPageRoutingModule {}

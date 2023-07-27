@@ -26,6 +26,8 @@ import { CompanyAddBlogComponent } from './admin-company/company-add-blog/compan
 import { CompanyAddUserComponent } from './admin-company/company-add-user/company-add-user.component';
 import { CompanyAddConsultingComponent } from './admin-company/company-add-consulting/company-add-consulting.component';
 
+import { AddCalendarComponent } from './admin-panel/add-calendar/add-calendar.component';
+
 import { AddUserComponent } from './admin-panel/add-user/add-user.component';
 import { PanelComponent } from './admin-company/panel/panel.component';
 
@@ -46,8 +48,8 @@ import { PanelComponent } from './admin-company/panel/panel.component';
     CompanyAddBlogComponent,
     CompanyAddUserComponent,
     CompanyAddConsultingComponent,
-    AddUserComponent
-
+    AddUserComponent,
+    AddCalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -67,4 +69,4 @@ import { PanelComponent } from './admin-company/panel/panel.component';
     PanelComponent,
   ],
 })
-export class AdminComponentsModule { }
+export class AdminComponentsModule {}
