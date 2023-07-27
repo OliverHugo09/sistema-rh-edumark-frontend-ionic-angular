@@ -20,6 +20,7 @@ export class LoginEntidadService {
         if (response && response.token) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('secretKey', environment.SECRET_KEY);
+          localStorage.setItem('entidadId', response.empleado.id);
           this.router.navigate(['admin-panel']);
           return true;
         } else {
@@ -35,7 +36,7 @@ export class LoginEntidadService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('secretKey');
-    localStorage.removeItem('empresaId');
+    localStorage.removeItem('entidadId');
     this.router.navigate(['tipo-entidad']);
   }
 

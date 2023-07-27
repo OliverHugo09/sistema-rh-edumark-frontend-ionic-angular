@@ -21,10 +21,10 @@ export class LoginCompanyUserService {
                     // Verificar si el correo y la contraseña son correctos
                     if (correo === response.empresa.correo && password === response.empresa.password) {
                         localStorage.setItem('empresaId', response.empresa.empresaId);
+                        localStorage.setItem('entidadId', response.empresa.entidadId);
                         localStorage.setItem('usuarioId', response.empresa.id);
                         localStorage.setItem('token', response.token);
                         localStorage.setItem('secretKey', environment.SECRET_KEY);
-                        this.router.navigate(['admin-panel', 'empresa']);
                         return true;
                     } else {
                         // Contraseña o correo incorrectos

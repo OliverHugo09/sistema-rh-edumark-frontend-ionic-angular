@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { LoginCompanyService } from '../../../connection/secure/login-company.service';
 import { LoginCompanyUserService } from '../../../connection/secure/login-company-user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginCompanyComponent implements OnInit {
   constructor(
     private loginService: LoginCompanyService,
     private loginUserService: LoginCompanyUserService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router,
   ) { }
 
   ngOnInit() { }
@@ -39,6 +41,7 @@ export class LoginCompanyComponent implements OnInit {
       .then(success => {
         if (success) {
           // El login de la empresa fue exitoso
+          this.router.navigate(['admin-panel', 'empresa']);
         } else {
           // Intentar el login de usuario
           this.loginUserService.login(this.correo, this.password)

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LoginEntidadService } from 'src/app/client/connection/secure/login-entidad.service';
+import { LoginCompanyUserService } from '../../../connection/secure/login-company-user.service';
 
 @Component({
   selector: 'app-login-entity',
@@ -15,7 +16,8 @@ export class LoginEntityComponent implements OnInit {
   constructor(
     private loginService: LoginEntidadService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private loginUserService: LoginCompanyUserService,
   ) { }
 
   ngOnInit() { }
@@ -37,16 +39,26 @@ export class LoginEntityComponent implements OnInit {
     this.loginService.login(this.correo, this.password)
       .then(success => {
         if (success) {
+          // El login de la empresa fue exitoso
         } else {
-          // Manejo de errores al loguearse
-          const alert = this.alertController.create({
-            header: 'Error❌',
-            subHeader: '¡Algo salió mal!',
-            message: 'Correo o contraseña inválidos, vuelve a intentar',
-            buttons: ['OK'],
-          }).then((alert) => {
-            alert.present(); // Mostrar el alert
-          });
+          // Intentar el login de usuario
+          this.loginUserService.login(this.correo, this.password)
+            .then(userSuccess => {
+              if (userSuccess) {
+                // El login de usuario fue exitoso
+                this.router.navigate(['admin-panel']);
+              } else {
+                // Ambos logins fallaron, mostrar mensaje de error
+                const alert = this.alertController.create({
+                  header: 'Error❌',
+                  subHeader: '¡Algo salió mal!',
+                  message: 'Correo o contraseña inválidos, vuelve a intentar',
+                  buttons: ['OK'],
+                }).then((alert) => {
+                  alert.present(); // Mostrar el alert
+                });
+              }
+            });
         }
       });
   }
