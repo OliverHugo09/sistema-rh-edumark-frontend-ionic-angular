@@ -6,6 +6,7 @@ import { Consulting } from '../../../interface/consulting';
 
 const API_URL = environment.API_URL + 'consulting/empresa/';
 const API_URL_Consulting = environment.API_URL + 'consulting/';
+const API_URL_ENTIDAD = environment.API_URL + 'consulting/entidad/';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,6 +25,10 @@ export class ConsultingCompanyService {
 
     getConsultings(id: number): Observable<Consulting[]> {
         return this.http.get<Consulting[]>(`${API_URL}${id}`, httpOptions);
+    }
+
+    getConsultingsByEntidad(id: number): Observable<Consulting[]> {
+        return this.http.get<Consulting[]>(`${API_URL_ENTIDAD}${id}`, httpOptions);
     }
 
     addConsulting(entity: Consulting): Observable<any> {

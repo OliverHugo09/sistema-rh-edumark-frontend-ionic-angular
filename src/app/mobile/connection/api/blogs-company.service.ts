@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Blog } from '../../../interface/blog';
 
 const API_URL = environment.API_URL + 'blog/';
+const API_URL_ENTIDAD = environment.API_URL + 'blog/entidad/';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,6 +24,10 @@ export class BlogCompanyService {
 
     getBlogs(id: number): Observable<Blog[]> {
         return this.http.get<Blog[]>(`${API_URL}${id}`, httpOptions);
+    }
+
+    getBlogsByEntidad(id: number): Observable<Blog[]> {
+        return this.http.get<Blog[]>(`${API_URL_ENTIDAD}${id}`, httpOptions);
     }
 
     addBlog(entity: Blog): Observable<any> {

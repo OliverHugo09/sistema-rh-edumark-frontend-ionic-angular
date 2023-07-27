@@ -14,10 +14,14 @@ import { CompanyAddConsultingComponent } from '../components/admin-company/compa
 import { AddUserComponent } from '../components/admin-panel/add-user/add-user.component';
 import { AddEmployeeComponent } from '../components/admin-panel/add-employee/add-employee.component';
 import { EditComponent } from '../components/admin-panel/edit/edit.component';
+import { BlogsComponent } from '../components/admin-panel/blogs/blogs.component';
+import { AddBlogComponent } from '../components/admin-panel/add-blog/add-blog.component';
+import { AddConsultingComponent } from '../components/admin-panel/add-consulting/add-consulting.component';
 
 const routes: Routes = [
   { path: '', component: RoutesPage },
   { path: 'empresa', component: PanelComponent },
+
   { path: 'empresa-agregar-empleado', component: CompanyAddEmployeeComponent },
   { path: 'empresa-editar', component: CompanyEditComponent },
   { path: 'empresa-blogs', component: CompanyBlogsComponent },
@@ -29,6 +33,10 @@ const routes: Routes = [
   { path: 'agregar-usuario', component: AddUserComponent },
   { path: 'agregar-empleado', component: AddEmployeeComponent },
   { path: 'editar', component: EditComponent },
+  { path: 'blogs', component: BlogsComponent },
+  { path: 'agregar-blog', component: AddBlogComponent },
+  { path: 'asesoria', component: AddConsultingComponent },
+
 
 ];
 

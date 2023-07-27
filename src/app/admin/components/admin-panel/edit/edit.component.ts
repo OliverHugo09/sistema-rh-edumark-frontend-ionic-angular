@@ -166,7 +166,7 @@ export class EditComponent implements OnInit {
         const formData = new FormData();
         formData.append('upload', file, file.name);
 
-        this.http.post(API_IMAGE + 'empresa/image/' + empresaId, formData).subscribe(
+        this.http.post(API_IMAGE + 'entidad/image/' + entidadId, formData).subscribe(
           (response) => {
             const alert = this.alertController.create({
               header: 'Éxito✔️',

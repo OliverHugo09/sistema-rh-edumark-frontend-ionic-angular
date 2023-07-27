@@ -30,6 +30,9 @@ import { AddUserComponent } from './admin-panel/add-user/add-user.component';
 import { PanelComponent } from './admin-company/panel/panel.component';
 import { AddEmployeeComponent } from './admin-panel/add-employee/add-employee.component';
 import { EditComponent } from './admin-panel/edit/edit.component';
+import { BlogsComponent } from './admin-panel/blogs/blogs.component';
+import { AddBlogComponent } from './admin-panel/add-blog/add-blog.component';
+import { AddConsultingComponent } from './admin-panel/add-consulting/add-consulting.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,11 @@ import { EditComponent } from './admin-panel/edit/edit.component';
     CompanyAddConsultingComponent,
     AddUserComponent,
     AddEmployeeComponent,
-    EditComponent
+    EditComponent,
+    BlogsComponent,
+    AddBlogComponent,
+    AddConsultingComponent
+
 
   ],
   imports: [
