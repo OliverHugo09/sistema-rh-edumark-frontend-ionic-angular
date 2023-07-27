@@ -21,7 +21,6 @@ export class LoginEntidadService {
           localStorage.setItem('token', response.token);
           localStorage.setItem('secretKey', environment.SECRET_KEY);
           localStorage.setItem('entidadId', response.empleado.id);
-          this.router.navigate(['admin-panel']);
           return true;
         } else {
           return false;
