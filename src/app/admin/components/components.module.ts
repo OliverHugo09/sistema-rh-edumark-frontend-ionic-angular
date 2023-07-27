@@ -26,6 +26,8 @@ import { CompanyAddBlogComponent } from './admin-company/company-add-blog/compan
 import { CompanyAddUserComponent } from './admin-company/company-add-user/company-add-user.component';
 import { CompanyAddConsultingComponent } from './admin-company/company-add-consulting/company-add-consulting.component';
 
+import { AddCalendarComponent } from './admin-panel/add-calendar/add-calendar.component';
+
 import { AddUserComponent } from './admin-panel/add-user/add-user.component';
 import { PanelComponent } from './admin-company/panel/panel.component';
 import { AddEmployeeComponent } from './admin-panel/add-employee/add-employee.component';
@@ -41,9 +43,11 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     DarkmodeComponent,
     MainComponent,
     PanelComponent,
+    
     CompanyMainComponent,
     CompanyNavbarComponent,
     CompanySidebarComponent,
+    
     CompanyAddEmployeeComponent,
     CompanyEditComponent,
     CompanyBlogsComponent,
@@ -51,13 +55,14 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     CompanyAddBlogComponent,
     CompanyAddUserComponent,
     CompanyAddConsultingComponent,
+    
     AddUserComponent,
+    AddCalendarComponent,
     AddEmployeeComponent,
     EditComponent,
     BlogsComponent,
     AddBlogComponent,
     AddConsultingComponent
-
 
   ],
   imports: [
@@ -78,4 +83,4 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     PanelComponent,
   ],
 })
-export class AdminComponentsModule { }
+export class AdminComponentsModule {}
