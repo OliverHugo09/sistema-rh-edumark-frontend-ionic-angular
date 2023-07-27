@@ -12,6 +12,8 @@ import { CompanyAddUserComponent } from '../components/admin-company/company-add
 import { CompanyAddConsultingComponent } from '../components/admin-company/company-add-consulting/company-add-consulting.component';
 
 import { AddUserComponent } from '../components/admin-panel/add-user/add-user.component';
+import { AddEmployeeComponent } from '../components/admin-panel/add-employee/add-employee.component';
+import { EditComponent } from '../components/admin-panel/edit/edit.component';
 
 const routes: Routes = [
   { path: '', component: RoutesPage },
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'empresa-asesoria', component: CompanyAddConsultingComponent },
 
   { path: 'agregar-usuario', component: AddUserComponent },
+  { path: 'agregar-empleado', component: AddEmployeeComponent },
+  { path: 'editar', component: EditComponent },
 
 ];
 

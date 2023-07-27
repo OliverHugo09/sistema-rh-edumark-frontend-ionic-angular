@@ -221,6 +221,61 @@ export class AddUserComponent implements OnInit {
     );
   }
 
+  async deleteEmployee(user: User) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar usuario',
+      message: '¿Estás seguro de que quieres eliminar este usuario?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Eliminar',
+          cssClass: 'danger',
+          handler: () => {
+            this.service.deleteUser(user.id).subscribe(
+              () => {
+                // Eliminación exitosa, aquí puedes mostrar una notificación de éxito
+                this.showSuccessAlert('Usuario eliminado exitosamente');
+                // Vuelve a cargar la lista de blogs después de eliminar uno
+                this.refreshEmployees();
+              },
+              (error) => {
+                console.error('Error al eliminar el usuario', error);
+                // Aquí puedes mostrar una notificación de error si lo deseas
+                this.showErrorAlert('Error al eliminar el usuario');
+              }
+            );
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async showSuccessAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message: message,
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
+  }
+
+  async showErrorAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: message,
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
+  }
+
   ngOnDestroy(): void {
     // Desuscribirse de todas las suscripciones cuando el componente se destruye
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

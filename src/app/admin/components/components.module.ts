@@ -28,6 +28,8 @@ import { CompanyAddConsultingComponent } from './admin-company/company-add-consu
 
 import { AddUserComponent } from './admin-panel/add-user/add-user.component';
 import { PanelComponent } from './admin-company/panel/panel.component';
+import { AddEmployeeComponent } from './admin-panel/add-employee/add-employee.component';
+import { EditComponent } from './admin-panel/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { PanelComponent } from './admin-company/panel/panel.component';
     CompanyAddBlogComponent,
     CompanyAddUserComponent,
     CompanyAddConsultingComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddEmployeeComponent,
+    EditComponent
 
   ],
   imports: [
