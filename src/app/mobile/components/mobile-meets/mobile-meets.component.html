@@ -59,6 +59,20 @@
         </ion-card>
       </div>
 
+      <!-- Solicitar una asesoria -->
+      <div *ngFor="let consulting of consultings">
+        <ion-card (click)="solicitarAsesoria(consulting.usuarioId, consulting.title)"
+          *ngIf="consulting.status === null && consulting.entidadId === entidadId">
+          <ion-card-header>
+            <ion-card-title>{{ consulting.title }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ consulting.description }}<br><br>
+            En el horario de {{ consulting.time }} <br><br>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
 
 
     </div>

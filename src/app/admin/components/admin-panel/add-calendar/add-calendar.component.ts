@@ -1,4 +1,4 @@
- import {
+import {
   Component,
   OnInit,
   ViewChild,
@@ -22,18 +22,18 @@ import { IonModal, ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AlertController } from '@ionic/angular';
-  
- 
-let entidadIdNumerico = localStorage.getItem('entidadId') ;
-let  entidadId  = parseInt(entidadIdNumerico );
- 
+
+
+let entidadIdNumerico = localStorage.getItem('entidadId');
+let entidadId = parseInt(entidadIdNumerico);
+
 
 @Component({
   selector: 'app-add-calendar',
   templateUrl: './add-calendar.component.html',
   styleUrls: ['./add-calendar.component.scss'],
 })
-export class AddCalendarComponent  implements OnInit {
+export class AddCalendarComponent implements OnInit {
   @Input() fecha: Date;
 
   data: string;
@@ -78,7 +78,7 @@ export class AddCalendarComponent  implements OnInit {
     private modalController: ModalController
   ) {
     this.eventForm = new FormGroup({
-      title: new FormControl('', Validators.required ), 
+      title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
     });
   }
@@ -113,21 +113,21 @@ export class AddCalendarComponent  implements OnInit {
       return;
     }
 
-     console .log(entidadId ) 
-     
+    console.log(entidadId)
+
     const data: EventInput = {
       title: this.eventForm.value.title,
       start: this.selectInfo.startStr,
       end: this.selectInfo.endStr,
-      description: this.eventForm.value.description ,
-      entidadId:    entidadId ,    
+      description: this.eventForm.value.description,
+      entidadId: entidadId,
     };
 
     calendarApi.addEvent(data);
 
-    this.httpClient. post(`${environment.API_URL}calendar/entidad`   ,  data).subscribe(
+    this.httpClient.post(`${environment.API_URL}calendar/entidad`, data).subscribe(
       () => {
-        const alert =  this.alertController
+        const alert = this.alertController
           .create({
             header: 'Éxito ✔',
             subHeader: 'Evento creado',
@@ -161,7 +161,7 @@ export class AddCalendarComponent  implements OnInit {
 
   getEvents() {
     this.httpClient
-      .get(`${environment.API_URL}calendar/entidad/`  + entidadId   )
+      .get(`${environment.API_URL}calendar/entidad/` + entidadId)
       .subscribe((data: any) => {
         const backendEvents = data; // Suponiendo que la respuesta del backend es un array de   eventos
         const calendarEvents: EventInput[] = backendEvents.map(
@@ -198,7 +198,7 @@ export class AddCalendarComponent  implements OnInit {
             console.log('Acción aceptada');
             clickInfo.event.remove();
             this.httpClient
-              .delete(`${environment.API_URL}calendar/entidad/`   + clickInfo.event.id)
+              .delete(`${environment.API_URL}calendar/entidad/` + clickInfo.event.id)
               .subscribe((data: any) => {
                 console.log('eliminado');
               });

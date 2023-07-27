@@ -26,8 +26,18 @@ export class MobileEventsComponent implements OnInit {
     const empresaIdNumerico = localStorage.getItem('empresaId');
     const empresaId = parseInt(empresaIdNumerico);
 
+    const entidadIdNumerico = localStorage.getItem('entidadId');
+    const entidadId = parseInt(entidadIdNumerico);
+
     this.httpClient
       .get(`${environment.API_URL}calendar/empresa/` + empresaId)
+      .subscribe((data: any) => {
+        this.calendarEvents = data;
+        this.highlightedDates = this.formatHighlightedDates(this.calendarEvents);
+      });
+
+    this.httpClient
+      .get(`${environment.API_URL}calendar/entidad/` + entidadId)
       .subscribe((data: any) => {
         this.calendarEvents = data;
         this.highlightedDates = this.formatHighlightedDates(this.calendarEvents);

@@ -19,8 +19,21 @@ export class MobileCardBlogComponent implements OnInit {
     const empresaIdNumerico = localStorage.getItem('empresaId');
     const empresaId = parseInt(empresaIdNumerico);
 
+    const entidadIdNumerico = localStorage.getItem('entidadId');
+    const entidadId = parseInt(entidadIdNumerico);
+
     // Llama al servicio para obtener la lista de blogs
     this.blogService.getBlogByCompany(empresaId).subscribe(
+      (blogs) => {
+        this.blogs = blogs;
+      },
+      (error) => {
+        console.error('Error al obtener la lista de blogs', error);
+      }
+    );
+
+    // Llama al servicio para obtener la lista de blogs
+    this.blogService.getBlogsByEntidad(entidadId).subscribe(
       (blogs) => {
         this.blogs = blogs;
       },

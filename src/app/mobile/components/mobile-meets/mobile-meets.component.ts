@@ -19,6 +19,7 @@ export class MobileMeetsComponent implements OnInit {
   usuarioId: number;
   empresaId: number;
   empleadoId: number;
+  entidadId: number;
 
   constructor(
     public modalController: ModalController,
@@ -33,6 +34,9 @@ export class MobileMeetsComponent implements OnInit {
     // Obtener el valor del localStorage y convertirlo a número (si es necesario)
     const usuarioIdString = localStorage.getItem('usuarioId');
     this.usuarioId = Number(usuarioIdString);
+
+    const entidadIdString = localStorage.getItem('entidadId');
+    this.entidadId = Number(entidadIdString);
 
     const empresaIdString = localStorage.getItem('empresaId');
     this.empresaId = Number(empresaIdString);
@@ -56,21 +60,50 @@ export class MobileMeetsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.service.getConsultings(this.empresaId).subscribe(
-      (consultings) => {
-        this.consultings = consultings;
-      },
-      (error) => {
-        // Manejar el error si es necesario
-        console.error('Error al obtener las asesorías', error);
-      }
-    );
+    // Obtén los consultings relacionados con la entidad o la empresa
+    this.obtenerConsultings();
 
+  }
+
+  obtenerConsultings() {
+    if (this.entidadId) {
+      // Si entidadId tiene un valor, obtén los consultings por entidad
+      this.service.getConsultingsByEntidad(this.entidadId).subscribe(
+        (consultings) => {
+          this.consultings = consultings;
+        },
+        (error) => {
+          // Manejar el error si es necesario
+          console.error('Error al obtener las asesorías', error);
+        }
+      );
+    } else if (this.empresaId) {
+      // Si empresaId tiene un valor, obtén los consultings por empresa
+      this.service.getConsultings(this.empresaId).subscribe(
+        (consultings) => {
+          this.consultings = consultings;
+        },
+        (error) => {
+          // Manejar el error si es necesario
+          console.error('Error al obtener las asesorías', error);
+        }
+      );
+    }
   }
 
   // Función para verificar si existen asesorías pendientes (con estado 2)
   hayAsesoriasPendientes(): boolean {
-    return this.consultings.some(c => c.status === 2 && c.empleadoId === this.empleadoId);
+    return this.consultings.some((c) => c.status === 2 && c.empleadoId === this.empleadoId);
+  }
+
+  // Método para imprimir asesorías con entidadId
+  imprimirAsesoriasConEntidad(): boolean {
+    return this.entidadId !== null && this.consultings.some((c) => c.entidadId === this.entidadId);
+  }
+
+  // Método para imprimir asesorías con empresaId
+  imprimirAsesoriasConEmpresa(): boolean {
+    return this.empresaId !== null && this.consultings.some((c) => c.empresaId === this.empresaId);
   }
 
   // Nueva función para actualizar el estado de la asesoría
@@ -128,8 +161,8 @@ export class MobileMeetsComponent implements OnInit {
         time: '', // Puedes dejar el horario vacío o asignarle algún valor por defecto
         comment: data.comment,
         status: 1, // Asigna el estado "Pendiente" (1 en tu caso)
-        empresaId: this.empresaId,
-        entidadId: null,
+        empresaId: this.empresaId ? this.empresaId : null, // Usa empresaId si está definido, de lo contrario, null
+        entidadId: this.entidadId ? this.entidadId : null, // Usa entidadId si está definido, de lo contrario, null
         usuarioId,
         empleadoId,
       };
