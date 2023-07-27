@@ -198,8 +198,8 @@ export class CompanyAddConsultingComponent implements OnInit {
 
   async deleteConsulting(ConsultingId: number) {
     const alert = await this.alertController.create({
-      header: 'Eliminar blog',
-      message: '¿Estás seguro de que quieres eliminar este blog?',
+      header: 'Finalizar asesoria',
+      message: '¿Estás seguro de que quieres finalizar esta asesoria?',
       buttons: [
         {
           text: 'Cancelar',
@@ -207,20 +207,20 @@ export class CompanyAddConsultingComponent implements OnInit {
           cssClass: 'secondary',
         },
         {
-          text: 'Eliminar',
+          text: 'Finalizar',
           cssClass: 'danger',
           handler: () => {
             this.service.deleteConsulting(ConsultingId).subscribe(
               () => {
                 // Eliminación exitosa, aquí puedes mostrar una notificación de éxito
-                this.showSuccessAlert('Blog eliminado exitosamente');
+                this.showSuccessAlert('Asesoria finalizada exitosamente');
                 // Vuelve a cargar la lista de blogs después de eliminar uno
                 this.loadBlogs();
               },
               (error) => {
-                console.error('Error al eliminar el blog', error);
+                console.error('Error al finalizar asesoria', error);
                 // Aquí puedes mostrar una notificación de error si lo deseas
-                this.showErrorAlert('Error al eliminar el blog');
+                this.showErrorAlert('Error al finalizar asesoria');
               }
             );
           },
@@ -262,7 +262,7 @@ export class CompanyAddConsultingComponent implements OnInit {
         this.consultings = blogs;
       },
       (error) => {
-        console.error('Error al obtener la lista de blogs', error);
+        console.error('Error al obtener la lista de asesorias', error);
       }
     );
   }

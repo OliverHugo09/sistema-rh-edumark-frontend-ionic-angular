@@ -172,6 +172,39 @@ export class CompanyAddEmployeeComponent implements OnInit {
     );
   }
 
+  deleteEmployee(employee: Employee): void {
+    const confirmDelete = confirm('¿Estás seguro de eliminar este empleado?');
+    if (confirmDelete) {
+      this.service.deleteEmployee(employee.id).subscribe(
+        () => {
+          // Operaciones adicionales después de eliminar el empleado
+          const alert = this.alertController.create({
+            header: 'Éxito ✔️',
+            subHeader: '¡Todo salió bien!',
+            message: 'Empleado eliminado exitosamente',
+            buttons: ['OK'],
+          }).then((alert) => {
+            alert.present(); // Mostrar el alert
+          });
+
+          // Actualizar la lista de empleados después de la eliminación
+          this.refreshEmployees();
+        },
+        (error) => {
+          // Manejo de errores al eliminar el empleado
+          const alert = this.alertController.create({
+            header: 'Error ❌',
+            subHeader: '¡Algo salió mal!',
+            message: 'No se pudo eliminar el empleado',
+            buttons: ['OK'],
+          }).then((alert) => {
+            alert.present(); // Mostrar el alert
+          });
+        }
+      );
+    }
+  }
+
   ngOnDestroy(): void {
     // Desuscribirse de todas las suscripciones cuando el componente se destruye
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

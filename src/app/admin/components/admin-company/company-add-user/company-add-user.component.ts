@@ -115,33 +115,6 @@ export class CompanyAddUserComponent implements OnInit {
     this.subscriptions.push(newUsers);
   }
 
-  copyUrl() {
-    const currentUrl = window.location.href;
-    const baseUrl = currentUrl.replace(/\/admin-panel.*/, '');
-    const url = `${baseUrl}/registrar-empleado/${empresaId}`;
-    navigator.clipboard.writeText(url).then(() => {
-      // Acciones adicionales después de copiar la URL al portapapeles
-      const alert = this.alertController.create({
-        header: 'URL Copiada ✔️',
-        subHeader: '¡Todo salió bien!',
-        message: 'El link de invitación se ha copiado al portapapeles correctamente.',
-        buttons: ['OK'],
-      }).then((alert) => {
-        alert.present(); // Mostrar el alert
-      });
-    }).catch((error) => {
-      // Manejo de errores al copiar la URL
-      const alert = this.alertController.create({
-        header: 'Error❌',
-        subHeader: '¡Algo salió mal!',
-        message: 'No se ha podido copiar el link de invitación',
-        buttons: ['OK'],
-      }).then((alert) => {
-        alert.present(); // Mostrar el alert
-      });
-    });
-  }
-
   refreshEmployees(): void {
     this.service.getUsers(empresaId).subscribe(
       (employees) => {

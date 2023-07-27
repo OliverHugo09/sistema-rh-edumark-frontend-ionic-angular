@@ -30,7 +30,7 @@ export class ResetPasswordComponent implements OnInit {
     private alertController: AlertController,
     private httpClient: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
   resetPassword(): void {
     if (!this.password || !this.confirmPassword) {

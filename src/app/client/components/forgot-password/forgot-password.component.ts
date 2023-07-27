@@ -17,7 +17,7 @@ export class ForgotPasswordComponent implements OnInit {
     private alertController: AlertController,
     private httpClient: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
   forgotPassword(): void {
     if (!this.correo) {
@@ -65,14 +65,14 @@ export class ForgotPasswordComponent implements OnInit {
               alert.present();
 
               alert.onDidDismiss().then(() => {
-                this.router.navigate(['/login']);
+                this.router.navigate(['']);
               });
             });
           console.log('Link   creado exitosamente ');
 
           // Agregar un tiempo de espera de 10 segundos antes de redirigir al login
           setTimeout(() => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['']);
           }, 5000); // 10000 milisegundos = 10 segundos
         },
 
@@ -92,5 +92,5 @@ export class ForgotPasswordComponent implements OnInit {
       );
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
