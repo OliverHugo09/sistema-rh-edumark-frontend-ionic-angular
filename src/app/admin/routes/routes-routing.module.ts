@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'empresa-agregar-blog', component: CompanyAddBlogComponent },
   { path: 'empresa-agregar-usuario', component: CompanyAddUserComponent },
   { path: 'empresa-asesoria', component: CompanyAddConsultingComponent },
+
   { path: 'agregar-usuario', component: AddUserComponent },
   { path: 'entidad-calendar', component: AddCalendarComponent },
   { path: 'agregar-empleado', component: AddEmployeeComponent },
@@ -44,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RoutesPageRoutingModule {}
+export class RoutesPageRoutingModule { }

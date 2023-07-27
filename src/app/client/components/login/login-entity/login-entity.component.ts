@@ -44,9 +44,9 @@ export class LoginEntityComponent implements OnInit {
           // Intentar el login de usuario
           this.loginUserService.login(this.correo, this.password)
             .then(userSuccess => {
+              this.router.navigate(['', 'admin-panel']);
               if (userSuccess) {
                 // El login de usuario fue exitoso
-                this.router.navigate(['admin-panel']);
               } else {
                 // Ambos logins fallaron, mostrar mensaje de error
                 const alert = this.alertController.create({
