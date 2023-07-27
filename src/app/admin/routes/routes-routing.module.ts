@@ -11,6 +11,8 @@ import { CompanyAddBlogComponent } from '../components/admin-company/company-add
 import { CompanyAddUserComponent } from '../components/admin-company/company-add-user/company-add-user.component';
 import { CompanyAddConsultingComponent } from '../components/admin-company/company-add-consulting/company-add-consulting.component';
 
+import { AddUserComponent } from '../components/admin-panel/add-user/add-user.component';
+
 const routes: Routes = [
   { path: '', component: RoutesPage },
   { path: 'empresa', component: PanelComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'empresa-agregar-blog', component: CompanyAddBlogComponent },
   { path: 'empresa-agregar-usuario', component: CompanyAddUserComponent },
   { path: 'empresa-asesoria', component: CompanyAddConsultingComponent },
+
+  { path: 'agregar-usuario', component: AddUserComponent },
 
 ];
 

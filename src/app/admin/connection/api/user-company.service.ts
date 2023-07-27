@@ -6,6 +6,7 @@ import { User } from '../../../interface/user';
 
 const API_URL = environment.API_URL + 'user/empresa/';
 const API_URL_USER = environment.API_URL + 'user/';
+const API_URL_ENTIDAD = environment.API_URL + 'user/entidad/';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,6 +21,10 @@ export class UserCompanyService {
 
     getUser(id: number): Observable<User> {
         return this.http.get<User>(`${API_URL_USER}${id}`)
+    }
+
+    getUserbyentidad(id: number): Observable<User[]> {
+        return this.http.get<User[]>(`${API_URL_ENTIDAD}${id}`, httpOptions);
     }
 
     getUsers(id: number): Observable<User[]> {

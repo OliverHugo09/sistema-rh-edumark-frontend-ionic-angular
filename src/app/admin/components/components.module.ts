@@ -15,7 +15,6 @@ import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
 import { DarkmodeComponent } from './shared/darkmode/darkmode.component';
 import { MainComponent } from './admin-panel/main/main.component';
 
-import { PanelComponent } from './admin-company/panel/panel.component';
 import { CompanyMainComponent } from './admin-company/company-main/company-main.component';
 import { CompanyNavbarComponent } from './admin-company/company-navbar/company-navbar.component';
 import { CompanySidebarComponent } from './admin-company/company-sidebar/company-sidebar.component';
@@ -26,6 +25,9 @@ import { CompanyCalendarComponent } from './admin-company/company-calendar/compa
 import { CompanyAddBlogComponent } from './admin-company/company-add-blog/company-add-blog.component';
 import { CompanyAddUserComponent } from './admin-company/company-add-user/company-add-user.component';
 import { CompanyAddConsultingComponent } from './admin-company/company-add-consulting/company-add-consulting.component';
+
+import { AddUserComponent } from './admin-panel/add-user/add-user.component';
+import { PanelComponent } from './admin-company/panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { CompanyAddConsultingComponent } from './admin-company/company-add-consu
     CompanyCalendarComponent,
     CompanyAddBlogComponent,
     CompanyAddUserComponent,
-    CompanyAddConsultingComponent
+    CompanyAddConsultingComponent,
+    AddUserComponent
 
   ],
   imports: [

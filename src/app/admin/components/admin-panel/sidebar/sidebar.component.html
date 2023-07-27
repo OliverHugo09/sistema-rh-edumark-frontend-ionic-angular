@@ -1,7 +1,7 @@
 <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
     aria-labelledby="sidebarMenuLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Edumark</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
             aria-label="Close"></button>
     </div>
@@ -26,21 +26,17 @@
         </h6>
         <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <i class="bi-buildings"></i>
-                    Empresa
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <a class="nav-link d-flex align-items-center gap-2" [routerLink]="['','admin-panel','agregar-empleado']"
+                    type="button">
                     <i class="bi-person"></i>
                     Empleado
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <a class="nav-link d-flex align-items-center gap-2" href="#" type="button"
+                    [routerLink]="['','admin-panel','agregar-usuario']">
                     <i class="bi-person-lock"></i>
-                    Admin
+                    Usuarios
                 </a>
             </li>
         </ul>
@@ -49,21 +45,37 @@
 
         <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" href="#">
+                <a class="nav-link d-flex align-items-center gap-2" [routerLink]="['','admin-panel','editar']"
+                    type="button">
                     <i class="bi-person-vcard"></i>
-                    Datos de la entidad
+                    Datos de la empresa
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <i class="bi-gear"></i>
-                    Settings
+                <a class="nav-link d-flex align-items-center gap-2" [routerLink]="['','admin-panel','blogs']"
+                    type="button">
+                    <i class="bi-newspaper"></i>
+                    Blogs y avisos
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" (click)="logout()">
+                <a class="nav-link d-flex align-items-center gap-2"
+                    [routerLink]="['','admin-panel','empresa-calendario']" type="button">
+                    <i class="bi-calendar3"></i>
+                    Eventos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex align-items-center gap-2" href="#" type="button"
+                    [routerLink]="['','admin-panel','empresa-asesoria']">
+                    <i class="bi-telephone"></i>
+                    Asesorias
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex align-items-center gap-2" (click)="logout()" type="button">
                     <i class="bi-door-open"></i>
-                    Sign out
+                    Cerrar sesión
                 </a>
             </li>
         </ul>
