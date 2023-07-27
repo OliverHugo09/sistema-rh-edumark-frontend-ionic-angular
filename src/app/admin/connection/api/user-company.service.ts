@@ -40,7 +40,7 @@ export class UserCompanyService {
     }
 
     deleteUser(id: number) {
-        return this.http.delete(`${API_URL}${id}`, httpOptions);
+        return this.http.delete(`${API_URL_USER}${id}`, httpOptions);
     }
 
 }

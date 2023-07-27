@@ -6,6 +6,7 @@ import { Employee } from '../../../interface/employee';
 
 const API_URL = environment.API_URL + 'empleado/empresa/';
 const API_URL_EMPLOYEE = environment.API_URL + 'empleado/';
+const API_URL_ENTIDAD = environment.API_URL + 'empleado/entidad/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,6 +27,10 @@ export class EmployeeCompanyService {
     return this.http.get<Employee[]>(`${API_URL}${id}`, httpOptions);
   }
 
+  getEmployeesByEntidad(id: number): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${API_URL_ENTIDAD}${id}`, httpOptions);
+  }
+
   addEmployee(entity: Employee): Observable<any> {
     return this.http.post(API_URL_EMPLOYEE, entity, httpOptions);
   }
@@ -35,7 +40,7 @@ export class EmployeeCompanyService {
   }
 
   deleteEmployee(id: number) {
-    return this.http.delete(`${API_URL}${id}`, httpOptions);
+    return this.http.delete(`${API_URL_EMPLOYEE}${id}`, httpOptions);
   }
 
 }

@@ -30,6 +30,11 @@ import { AddCalendarComponent } from './admin-panel/add-calendar/add-calendar.co
 
 import { AddUserComponent } from './admin-panel/add-user/add-user.component';
 import { PanelComponent } from './admin-company/panel/panel.component';
+import { AddEmployeeComponent } from './admin-panel/add-employee/add-employee.component';
+import { EditComponent } from './admin-panel/edit/edit.component';
+import { BlogsComponent } from './admin-panel/blogs/blogs.component';
+import { AddBlogComponent } from './admin-panel/add-blog/add-blog.component';
+import { AddConsultingComponent } from './admin-panel/add-consulting/add-consulting.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +43,11 @@ import { PanelComponent } from './admin-company/panel/panel.component';
     DarkmodeComponent,
     MainComponent,
     PanelComponent,
+    
     CompanyMainComponent,
     CompanyNavbarComponent,
     CompanySidebarComponent,
+    
     CompanyAddEmployeeComponent,
     CompanyEditComponent,
     CompanyBlogsComponent,
@@ -48,8 +55,15 @@ import { PanelComponent } from './admin-company/panel/panel.component';
     CompanyAddBlogComponent,
     CompanyAddUserComponent,
     CompanyAddConsultingComponent,
+    
     AddUserComponent,
     AddCalendarComponent,
+    AddEmployeeComponent,
+    EditComponent,
+    BlogsComponent,
+    AddBlogComponent,
+    AddConsultingComponent
+
   ],
   imports: [
     CommonModule,

@@ -41,7 +41,7 @@ export class RegisterCompanyComponent implements OnInit, OnDestroy {
     correo: '',
     rfc: '',
     password: '',
-    foto: '',
+    foto: 'https://placehold.co/40x40',
     giroId: 0,
     entidadId: null,
   }

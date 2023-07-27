@@ -7,6 +7,7 @@ export interface Organization {
     correo: string;
     rfc: string;
     password: string;
+    foto: string;
     giroId: number
     tipoentidadId: number
 
