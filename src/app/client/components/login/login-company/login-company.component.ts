@@ -48,6 +48,7 @@ export class LoginCompanyComponent implements OnInit {
             .then(userSuccess => {
               if (userSuccess) {
                 // El login de usuario fue exitoso
+                this.router.navigate(['admin-panel', 'empresa']);
               } else {
                 // Ambos logins fallaron, mostrar mensaje de error
                 const alert = this.alertController.create({
