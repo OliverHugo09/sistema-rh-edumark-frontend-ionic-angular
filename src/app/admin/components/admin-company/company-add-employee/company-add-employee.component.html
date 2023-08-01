@@ -143,8 +143,15 @@
           </div>
           <!-- Password input -->
           <div class="form-outline mb-2">
-            <ion-input type="password" label="Contraseña" label-placement="floating" fill="outline"
-              formControlName="password" placeholder="Ejemplo. r5LjN8Yvg$MNtFui"></ion-input>
+            <div class="d-flex align-items-center">
+              <ion-input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" label="Contraseña"
+                label-placement="floating" fill="outline" formControlName="password"
+                placeholder="Ejemplo. r5LjN8Yvg$MNtFui"></ion-input>
+              <ion-icon *ngIf="showPassword" name="eye-off-outline" slot="end"
+                (click)="togglePasswordVisibility()"></ion-icon>
+              <ion-icon *ngIf="!showPassword" name="eye-outline" slot="end"
+                (click)="togglePasswordVisibility()"></ion-icon>
+            </div>
             <div *ngIf="employeeForm.get('password').invalid && employeeForm.get('password').touched">
               <p class="text-danger small"><small>La contraseña es requerida y debe tener al menos 8
                   caracteres</small></p>

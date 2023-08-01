@@ -29,6 +29,7 @@ export class CompanyAddEmployeeComponent implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
   employeeForm: FormGroup;
   isModalOpen = false;
+  showPassword: boolean = false;
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = false; // Establecer el estado como false primero para cerrar el modal
@@ -92,6 +93,10 @@ export class CompanyAddEmployeeComponent implements OnInit {
     );
 
     this.subscriptions.push(newEmployees);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   copyUrl() {

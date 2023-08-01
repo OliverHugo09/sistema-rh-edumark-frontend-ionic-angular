@@ -20,6 +20,7 @@ import { CrudGiroService } from '../../../connection/api/crud-giro.service';
 })
 export class RegisterOrganizationComponent implements OnInit, OnDestroy {
   organizationForm: FormGroup;
+  showPassword: boolean = false;
 
   organization: Organization = {
     id: null,
@@ -101,6 +102,10 @@ export class RegisterOrganizationComponent implements OnInit, OnDestroy {
       }
     );
     this.subscriptions.push(newTypes, newGiros);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
 

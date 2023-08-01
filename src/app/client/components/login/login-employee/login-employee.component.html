@@ -10,19 +10,20 @@
       <!-- Email input -->
       <div class="mb-4">
         <ion-label position="stacked">Correo electrónico</ion-label>
-        <!-- <ion-input [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" type="email" fill="outline"></ion-input> -->
-        <input [(ngModel)]="correo" type="email" class="form-control" placeholder="Correo electrónico"
-          [ngModelOptions]="{standalone: true}">
+        <ion-input [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" type="email" fill="outline"></ion-input>
+
       </div>
       <!-- Password input -->
       <div class="mb-4">
         <ion-label position="stacked">Contraseña</ion-label>
-
-        <!-- <ion-input [(ngModel)]="password" (keydown.enter)="login()" [ngModelOptions]="{standalone: true}"
-          type="password" fill="outline"></ion-input> -->
-
-        <input [(ngModel)]="password" type="password" class="form-control" (keydown.enter)="login()"
-          placeholder="Password" [ngModelOptions]="{standalone: true}">
+        <div class="d-flex align-items-center">
+          <ion-input [(ngModel)]="password" type="{{ showPassword ? 'text' : 'password' }}" class="form-control"
+            (keydown.enter)="login()" [ngModelOptions]="{standalone: true}" fill="outline">
+          </ion-input>
+          <ion-icon *ngIf="showPassword" name="eye-off-outline" slot="end"
+            (click)="togglePasswordVisibility()"></ion-icon>
+          <ion-icon *ngIf="!showPassword" name="eye-outline" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+        </div>
       </div>
 
       <div class="d-flex justify-content-around align-items-center mb-4">

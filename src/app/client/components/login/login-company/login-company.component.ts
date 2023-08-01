@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginCompanyComponent implements OnInit {
   correo: string;
   password: string;
+  showPassword: boolean = false;
 
   constructor(
     private loginService: LoginCompanyService,
@@ -22,6 +23,10 @@ export class LoginCompanyComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   login(): void {
     if (!this.correo || !this.password) {

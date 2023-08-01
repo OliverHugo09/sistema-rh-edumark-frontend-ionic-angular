@@ -50,6 +50,7 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
   organizations: Organization[];
   companys: Company[];
   location: any;
+  showPassword: boolean = false;
 
   constructor(
     public modalController: ModalController,
@@ -100,6 +101,10 @@ export class RegisterEmployeeComponent implements OnInit, OnDestroy {
       }
     );
     this.subscriptions.push(newOrganizations, newCompanys);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   addEmployee(): void {

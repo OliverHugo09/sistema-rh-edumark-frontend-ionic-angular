@@ -12,6 +12,7 @@ import { LoginCompanyUserService } from '../../../connection/secure/login-compan
 export class LoginEntityComponent implements OnInit {
   correo: string;
   password: string;
+  showPassword: boolean = false;
 
   constructor(
     private loginService: LoginEntidadService,
@@ -21,6 +22,10 @@ export class LoginEntityComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   login(): void {
     if (!this.correo || !this.password) {

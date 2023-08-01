@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginEmployeeComponent implements OnInit {
   correo: string;
   password: string;
+  showPassword: boolean = false;
 
   constructor(
     private loginService: LoginEmpleadoService,
@@ -22,6 +23,10 @@ export class LoginEmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   async presentModal() {
     const modal = await this.modalController.create({

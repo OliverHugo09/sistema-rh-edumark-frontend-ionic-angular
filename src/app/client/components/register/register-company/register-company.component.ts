@@ -21,6 +21,7 @@ import { CrudCompanyService } from '../../../connection/api/crud-company.service
 })
 export class RegisterCompanyComponent implements OnInit, OnDestroy {
   companyForm: FormGroup;
+  showPassword: boolean = false;
 
   public getOrganization(organization: Organization): { id: number, nombre: string } {
     const { id, nombre } = organization;
@@ -100,6 +101,10 @@ export class RegisterCompanyComponent implements OnInit, OnDestroy {
       }
     );
     this.subscriptions.push(newOrganizations, newGiros);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   addCompany(): void {
