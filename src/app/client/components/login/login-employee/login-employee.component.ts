@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginEmpleadoService } from 'src/app/client/connection/secure/login-empleado.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { AltaEntidadModalComponent } from './alta-entidad-modal.component';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-employee',
@@ -13,10 +16,26 @@ export class LoginEmployeeComponent implements OnInit {
 
   constructor(
     private loginService: LoginEmpleadoService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private modalController: ModalController,
+    private router: Router
   ) { }
 
   ngOnInit() { }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: AltaEntidadModalComponent,
+      componentProps: {
+        codigoSecreto: environment.codigoSecreto,
+      },
+    });
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+    }
+  }
 
   login(): void {
     if (!this.correo || !this.password) {

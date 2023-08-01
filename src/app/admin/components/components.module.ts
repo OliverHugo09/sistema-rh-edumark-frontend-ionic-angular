@@ -43,11 +43,11 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     DarkmodeComponent,
     MainComponent,
     PanelComponent,
-    
+
     CompanyMainComponent,
     CompanyNavbarComponent,
     CompanySidebarComponent,
-    
+
     CompanyAddEmployeeComponent,
     CompanyEditComponent,
     CompanyBlogsComponent,
@@ -55,7 +55,7 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     CompanyAddBlogComponent,
     CompanyAddUserComponent,
     CompanyAddConsultingComponent,
-    
+
     AddUserComponent,
     AddCalendarComponent,
     AddEmployeeComponent,
@@ -83,4 +83,4 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     PanelComponent,
   ],
 })
-export class AdminComponentsModule {}
+export class AdminComponentsModule { }

@@ -10,6 +10,8 @@ import { RegisterEntityComponent } from './register/register-entity/register-ent
 import { RegisterOrganizationComponent } from './register/register-organization/register-organization.component';
 import { RegisterCompanyComponent } from './register/register-company/register-company.component';
 
+import { AltaEntidadModalComponent } from './login/login-employee/alta-entidad-modal.component';
+
 import { LoginEmployeeComponent } from './login/login-employee/login-employee.component';
 import { LoginEntityComponent } from './login/login-entity/login-entity.component';
 import { LoginCompanyComponent } from './login/login-company/login-company.component';
@@ -30,6 +32,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ForgotPasswordComponent,
     ResetPasswordComponent,
     SelectLoginComponent,
+    AltaEntidadModalComponent
   ],
   imports: [
     CommonModule,
@@ -40,4 +43,4 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   ],
   exports: [LoginEmployeeComponent, LoginEntityComponent],
 })
-export class ClientComponentsModule {}
+export class ClientComponentsModule { }

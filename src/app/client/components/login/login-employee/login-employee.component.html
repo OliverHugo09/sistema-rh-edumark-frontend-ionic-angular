@@ -10,13 +10,19 @@
       <!-- Email input -->
       <div class="mb-4">
         <ion-label position="stacked">Correo electrónico</ion-label>
-        <ion-input [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" type="email" fill="outline"></ion-input>
+        <!-- <ion-input [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" type="email" fill="outline"></ion-input> -->
+        <input [(ngModel)]="correo" type="email" class="form-control" placeholder="Correo electrónico"
+          [ngModelOptions]="{standalone: true}">
       </div>
       <!-- Password input -->
       <div class="mb-4">
         <ion-label position="stacked">Contraseña</ion-label>
-        <ion-input [(ngModel)]="password" (keydown.enter)="login()" [ngModelOptions]="{standalone: true}"
-          type="password" fill="outline"></ion-input>
+
+        <!-- <ion-input [(ngModel)]="password" (keydown.enter)="login()" [ngModelOptions]="{standalone: true}"
+          type="password" fill="outline"></ion-input> -->
+
+        <input [(ngModel)]="password" type="password" class="form-control" (keydown.enter)="login()"
+          placeholder="Password" [ngModelOptions]="{standalone: true}">
       </div>
 
       <div class="d-flex justify-content-around align-items-center mb-4">
@@ -36,6 +42,8 @@
           sesión</button>
         <button class="btn btn-secondary btn-block" type="button" [routerLink]="['tipo-entidad']"><i
             class="fab bi bi-box-arrow-up-right me-2"></i>Sistema RH</button>
+        <button class="btn btn-secondary btn-block" type="button" (click)="presentModal()"><i
+            class="fab bi bi-building-add me-2"></i>Dar de alta entidad</button>
       </div>
 
     </form>

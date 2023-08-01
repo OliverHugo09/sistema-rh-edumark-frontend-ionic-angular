@@ -19,6 +19,7 @@ import { BlogsComponent } from '../components/admin-panel/blogs/blogs.component'
 import { AddBlogComponent } from '../components/admin-panel/add-blog/add-blog.component';
 import { AddConsultingComponent } from '../components/admin-panel/add-consulting/add-consulting.component';
 
+
 const routes: Routes = [
   { path: '', component: RoutesPage },
   { path: 'empresa', component: PanelComponent },

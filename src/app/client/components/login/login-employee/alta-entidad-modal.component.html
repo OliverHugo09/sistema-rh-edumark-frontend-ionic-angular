@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Ingresar Código</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="close()">Cerrar</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="mb-4 ion-padding">
+        <ion-label position="stacked">Correo electrónico</ion-label>
+        <ion-input [(ngModel)]="codigoIngresado" [ngModelOptions]="{standalone: true}" type="text"
+            fill="outline"></ion-input>
+    </div>
+    <div class="ion-padding">
+        <ion-button expand="full" (click)="verificarCodigo()">Verificar Código</ion-button>
+    </div>
+</ion-content>
