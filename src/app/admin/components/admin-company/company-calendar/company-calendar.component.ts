@@ -1,19 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  signal,
-  ChangeDetectorRef,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, ViewChild, signal, ChangeDetectorRef, Input, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  CalendarOptions,
-  DateSelectArg,
-  EventClickArg,
-  EventApi,
-  EventInput,
-} from '@fullcalendar/core';
+import { CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventInput, } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -115,7 +102,7 @@ export class CompanyCalendarComponent implements OnInit {
       title: this.eventForm.value.title,
       start: this.selectInfo.startStr,
       end: this.selectInfo.endStr,
-      description: this.eventForm.value.description ,
+      description: this.eventForm.value.description,
       empresaId: empresaId,
     };
 

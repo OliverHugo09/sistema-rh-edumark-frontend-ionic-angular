@@ -17,8 +17,6 @@ import { CrudOrganizationService } from '../../../../client/connection/api/crud-
 import { CrudGiroService } from '../../../../client/connection/api/crud-giro.service';
 import { CrudCompanyService } from '../../../../client/connection/api/crud-company.service';
 
-
-
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
 
@@ -145,9 +143,6 @@ export class CompanyEditComponent implements OnInit {
       }
     );
   }
-
-
-
   async onFileChange(event: any) {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
@@ -156,15 +151,12 @@ export class CompanyEditComponent implements OnInit {
       translucent: true,
       backdropDismiss: false
     });
-
     try {
       await loading.present();
       const file = event.target.files[0];
-
       if (file) {
         const formData = new FormData();
         formData.append('upload', file, file.name);
-
         this.http.post(API_IMAGE + 'empresa/image/' + empresaId, formData).subscribe(
           (response) => {
             const alert = this.alertController.create({
@@ -196,11 +188,9 @@ export class CompanyEditComponent implements OnInit {
     }
   }
 
-
   onAddImageClick() {
     this.fileInput.nativeElement.click();
   }
-
 
   compareFn(option1: any, option2: any): boolean {
     return option1 === option2 || (option1 === null && option2 === undefined) || (option1 === undefined && option2 === null);
@@ -219,7 +209,6 @@ export class CompanyEditComponent implements OnInit {
       password: this.company.password
     });
   }
-
 
   ngOnDestroy(): void {
     // Desuscribirse de todas las suscripciones cuando el componente se destruye

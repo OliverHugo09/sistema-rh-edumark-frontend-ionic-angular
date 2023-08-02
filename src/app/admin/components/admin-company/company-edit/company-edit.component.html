@@ -114,15 +114,12 @@
                   class="bi bi-image"></i> Subir foto de perfil</button>
               <input type="file" accept="image/*" #fileInput hidden (change)="onFileChange($event)">
             </div>
-
             <!-- Submit button -->
             <div class="d-grid gap-2">
               <button class="btn btn-primary" type="submit" [disabled]="companyForm.invalid">Editar</button>
             </div>
           </form>
         </div>
-
-
       </main>
     </div>
   </div>

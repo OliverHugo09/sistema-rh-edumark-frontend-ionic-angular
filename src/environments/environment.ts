@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   SECRET_KEY: '`>V(CMAZ~c;GNb,BA*mj[]mEv[aR]*Roe>n}Lz9)',
   API_URL: 'http://localhost:5000/',
   codigoSecreto: 'V4X8K6'

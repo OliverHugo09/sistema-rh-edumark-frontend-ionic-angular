@@ -14,9 +14,6 @@ import { UserCompanyService } from '../../../../admin/connection/api/user-compan
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
 
-let entidadIdNumerico = localStorage.getItem('entidadId');
-let entidadId = parseInt(entidadIdNumerico);
-
 let API_URL = environment.API_URL;
 
 @Component({
@@ -54,6 +51,7 @@ export class CompanyAddUserComponent implements OnInit {
       this.userForm.reset();
     }
   }
+
   openUpdateModal(user: User) {
     this.selectedUser = user;
     this.userForm.patchValue({
@@ -63,7 +61,6 @@ export class CompanyAddUserComponent implements OnInit {
     });
     this.isUpdateModalOpen = true;
   }
-
 
   closeUpdateModal() {
     this.isUpdateModalOpen = false; // Cierra el modal de actualización
@@ -176,7 +173,6 @@ export class CompanyAddUserComponent implements OnInit {
       password: this.selectedUser.password
     });
   }
-
 
   updateEmployee(): void {
     if (this.userForm.invalid) {

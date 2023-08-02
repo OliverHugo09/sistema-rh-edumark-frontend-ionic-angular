@@ -15,9 +15,6 @@ import { EmployeeCompanyService } from '../../../connection/api/employee-company
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
 
-let entidadIdNumerico = localStorage.getItem('entidadId');
-let entidadId = parseInt(entidadIdNumerico);
-
 let API_URL = environment.API_URL;
 
 @Component({

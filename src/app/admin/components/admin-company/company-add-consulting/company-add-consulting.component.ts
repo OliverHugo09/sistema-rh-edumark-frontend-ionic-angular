@@ -13,9 +13,6 @@ import { ConsultingCompanyService } from '../../../../admin/connection/api/consu
 let empresaIdNumerico = localStorage.getItem('empresaId');
 let empresaId = parseInt(empresaIdNumerico);
 
-let entidadIdNumerico = localStorage.getItem('entidadId');
-let entidadId = parseInt(entidadIdNumerico);
-
 @Component({
   selector: 'app-company-add-consulting',
   templateUrl: './company-add-consulting.component.html',
@@ -278,7 +275,6 @@ export class CompanyAddConsultingComponent implements OnInit {
 
     });
   }
-
 
   updateEmployee(): void {
     if (this.userForm.invalid) {
