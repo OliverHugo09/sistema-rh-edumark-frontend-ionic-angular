@@ -36,8 +36,7 @@ export class LoginEmpleadoService {
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('secretKey');
+    localStorage.clear();
     this.router.navigate(['']);
   }
 

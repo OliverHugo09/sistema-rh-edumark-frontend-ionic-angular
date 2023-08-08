@@ -46,9 +46,7 @@ export class LoginCompanyService {
   }
 
   removeItems(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('secretKey');
-    localStorage.removeItem('empresaId');
+    localStorage.clear();
   }
 
   isLoggedIn(): boolean {
