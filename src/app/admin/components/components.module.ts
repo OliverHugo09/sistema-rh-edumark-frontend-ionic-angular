@@ -14,6 +14,7 @@ import { NavbarComponent } from './admin-panel/navbar/navbar.component';
 import { SidebarComponent } from './admin-panel/sidebar/sidebar.component';
 import { DarkmodeComponent } from './shared/darkmode/darkmode.component';
 import { MainComponent } from './admin-panel/main/main.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 import { CompanyMainComponent } from './admin-company/company-main/company-main.component';
 import { CompanyNavbarComponent } from './admin-company/company-navbar/company-navbar.component';
@@ -47,6 +48,7 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     CompanyMainComponent,
     CompanyNavbarComponent,
     CompanySidebarComponent,
+    LoadingComponent,
 
     CompanyAddEmployeeComponent,
     CompanyEditComponent,
@@ -81,6 +83,7 @@ import { AddConsultingComponent } from './admin-panel/add-consulting/add-consult
     DarkmodeComponent,
     MainComponent,
     PanelComponent,
+    LoadingComponent
   ],
 })
 export class AdminComponentsModule { }

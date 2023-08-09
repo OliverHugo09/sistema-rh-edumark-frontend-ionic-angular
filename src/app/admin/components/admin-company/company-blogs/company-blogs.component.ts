@@ -23,6 +23,7 @@ export class CompanyBlogsComponent implements OnInit {
 
   ngOnInit() {
     this.loadBlogs();
+
   }
 
   async loadBlogs() {

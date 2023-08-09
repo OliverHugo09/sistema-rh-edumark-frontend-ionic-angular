@@ -115,7 +115,7 @@ export class CompanyAddEmployeeComponent implements OnInit {
       const alert = this.alertController.create({
         header: 'Error❌',
         subHeader: '¡Algo salió mal!',
-        message: 'No se ha podido copiar el link de invitación',
+        message: 'Funcionalidad solo disponible en la versión web',
         buttons: ['OK'],
       }).then((alert) => {
         alert.present(); // Mostrar el alert
